@@ -1,0 +1,57 @@
+#n Set to inet for IPv4-only, inet6 for IPv6-only, any for either one
+AddressFamily any
+Port 2222
+
+# Allow only the named users and groups to log in
+# Requires reload
+AllowUsers avalente
+AllowGroups avalente
+
+# TCP forwarding is convinient for tunnels, can be abused
+AllowTcpForwarding on
+
+# Display a message before users authenticate
+# Banner /etc/banner
+
+# Logging
+# Use the "auth" facility for syslog messages
+SyslogFacility AUTH
+
+# Record failed login attempts
+LogLevel VERBOSE
+
+# Authentication:
+# Preferer public key authentication only
+ChallengeResponseAuthentication no
+PasswordAuthentication no
+RSAAuthentication no
+GSSAPIAuthentication no
+HostbasedAuthentication no
+UsePAM no
+KerberosAuthentication no
+PubkeyAuthentication yes
+
+# Disconnect inactive clients after 5 minutes
+ClientAliveInterval 300
+ClientAliveCountMax 1
+
+# Do not allow root to login - use sudo
+PermitRootLogin no
+
+# Allow compression at all times
+Compression yes
+
+# Do not allow remote hosts to use forwarded port
+GatewayPorts no
+
+# Reduce from the default 6
+MaxAuthTries 3
+
+# Prevents users from setting their environment in authorized_keys file
+PermitUserEnvironment no
+
+# Kill the session if a TCP connection is lost
+TCPKeepAlive no
+
+# Do not allow X11 forwarding, headless servers
+X11Forwarding no

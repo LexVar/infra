@@ -1,0 +1,12 @@
+# Home folder
+host_home: "{{ lookup('env','HOME') }}"
+
+# ----- SSH ------
+# Remote user name
+user: vagrant 
+
+# locatin of public key to add for ssh
+public_key: "{{ host_home }}/.ssh/ssh_key.pub"
+
+# locatin of public key to add for ssh
+private_key: "{{ host_home }}/.ssh/ssh_key"
