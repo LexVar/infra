@@ -1,0 +1,4 @@
+- hosts: sshservers
+  gather_facts: yes
+  roles:
+    - ssh

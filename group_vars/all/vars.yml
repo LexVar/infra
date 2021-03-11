@@ -1,0 +1,4 @@
+# Home folder
+host_home: "{{ lookup('env','HOME') }}"
+
+remote_user: vagrant

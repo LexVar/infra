@@ -1,11 +1,11 @@
 #n Set to inet for IPv4-only, inet6 for IPv6-only, any for either one
 AddressFamily any
-Port 2222
+Port 22
 
 # Allow only the named users and groups to log in
 # Requires reload
-AllowUsers avalente
-AllowGroups avalente
+AllowUsers {{ user }}
+AllowGroups {{ group }}
 
 # TCP forwarding is convinient for tunnels, can be abused
 AllowTcpForwarding on
