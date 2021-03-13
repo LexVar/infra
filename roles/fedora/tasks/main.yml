@@ -1,0 +1,52 @@
+---
+# tasks file for fedora
+
+# wtf ansible ???
+- name: Install python
+  dnf:
+      name: python3
+  become: true
+
+- name: Add rpmfusion free, nonfree repos
+  command: |
+    dnf install -y "{{ rpmfusion['free'] }}" "{{ rpmfusion['nonfree'] }}"
+  become: true
+
+- name: Install drivers
+  dnf:
+    state: latest
+    name: "{{ drivers_packages }}"
+  become: true
+
+- name: Install gui programs
+  dnf:
+    state: latest
+    name: "{{ gui_packages }}"
+  become: true
+
+- name: Install command line tools
+  dnf:
+    state: latest
+    name: "{{ cmd_packages }}"
+  become: true
+
+- name: Install miscellanious packages
+  flatpak:
+    state: present
+    name: "{{ misc_packages }}"
+
+- name: Add the flathub flatpak repository
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+    method: user
+
+- name: Install flatpak apps
+  community.general.flatpak:
+    state: present
+    # name: "{{ flatpak_packages }}"
+    name: "{{ item }}"
+    method: user
+    state: present
+  with_items: "{{ flatpak_packages }}"

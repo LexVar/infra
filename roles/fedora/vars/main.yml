@@ -1,0 +1,89 @@
+---
+# vars file for fedora
+
+rpmfusion:
+  # free: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_facts.distribution_version }}.noarch.rpm
+  # nonfree: https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts.distribution_version }}.noarch.rpm
+  free: https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_facts.distribution_version }}.noarch.rpm
+  nonfree: https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts.distribution_version }}.noarch.rpm
+
+gui_packages:
+  - keepassxc
+  - qbittorrent
+  - libreoffice
+  - elisa-player
+  - vlc
+  - geary
+  - kate
+  - latte-dock
+  - timeshift
+  - flatpak
+  - VirtualBox
+  - VirtualBox-kmodsrc
+  - VirtualBox-server
+
+drivers_packages:
+  - mesa-vdpau-drivers
+  - mesa-vulkan-drivers
+  - libva-vdpau-driver
+  - libvdpau-va-gl
+  - libvdpau-devel
+
+cmd_packages:
+  - fish
+  - git
+  - vim
+  - vim-X11
+  - htop
+  - youtube-dl
+  - tmux
+  - xdotool
+  - wmctrl
+  - libinput
+  - libinput-devel
+  - libinput-utils
+  - xclip
+  - cmake
+  - gcc
+  - gcc-c++
+  - make
+  - duplicity
+  - python3-devel
+  - rclone
+  - rsync
+  - ruby
+  - vagrant
+  - ansible
+  - xterm
+  - fzf
+  - powertop
+  - tlp
+  - tuned-utils
+  - thermald
+  - msr-tools
+  - lm_sensors
+  - hdparm
+  - acpi
+
+misc_packages:
+  - fontawesome-fonts
+  - ssmtp
+  - python3-psutil
+  - roboto-fontface-fonts
+  - kio-gdrive
+  - kaccounts-integration
+  - kaccounts-providers
+  - ktp-accounts-kcm
+
+flatpak_packages:
+  - com.spotify.Client
+  - us.zoom.Zoom
+  - com.anydesk.Anydesk
+  - com.skype.Client
+  - com.discordapp.Discord
+
+all_packages:
+  - "{{ driver_packages }}"
+  - "{{ gui_packages }}"
+  - "{{ misc_packages }}"
+  - "{{ cmd_packages }}"
