@@ -12,7 +12,7 @@ Roles:
 - [X] Include full ssh configuration
 - [X] Setup proper folder structure with roles
 - [ ] Firewall, Failban configuration playbook
-- [.] Fedora workstation setup
+- [ ] Fedora workstation setup
 	- [X] Packages
 	- [ ] KDE configuration
 	- [ ] dotfiles
