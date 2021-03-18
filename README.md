@@ -1,10 +1,16 @@
 # Ansible configuration repo
 
-Roles:
+### Roles
 - SSH configuration with public key authentication
 - Fedora workstation setup
 
-## Tools
+### Setup
+```
+ansible-galaxy collection install community.general
+ansible-galaxy collection install ansible.posix
+```
+
+### Tools
 - ansible 2.9.18
 - python 3.9.2
 

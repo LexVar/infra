@@ -1,0 +1,5 @@
+# Dotfiles github repo
+dotfiles-repo: git@github.com:LexVar/dotfiles.git
+
+# Github private key file
+github-key-path: "{{ host_home }}/.ssh/github-lexvar"

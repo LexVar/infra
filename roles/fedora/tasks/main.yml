@@ -45,7 +45,6 @@
 - name: Install flatpak apps
   community.general.flatpak:
     state: present
-    # name: "{{ flatpak_packages }}"
     name: "{{ item }}"
     method: user
     state: present

@@ -1,9 +1,8 @@
 ---
 # vars file for fedora
 
+# ------------------ Packages ------------------ 
 rpmfusion:
-  # free: https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_facts.distribution_version }}.noarch.rpm
-  # nonfree: https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts.distribution_version }}.noarch.rpm
   free: https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_facts.distribution_version }}.noarch.rpm
   nonfree: https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts.distribution_version }}.noarch.rpm
 
@@ -81,9 +80,4 @@ flatpak_packages:
   - com.anydesk.Anydesk
   - com.skype.Client
   - com.discordapp.Discord
-
-all_packages:
-  - "{{ driver_packages }}"
-  - "{{ gui_packages }}"
-  - "{{ misc_packages }}"
-  - "{{ cmd_packages }}"
+# ---------------------------------------------- 
