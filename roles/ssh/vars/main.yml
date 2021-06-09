@@ -3,8 +3,10 @@
 
 # ----- SSH ------
 # Remote user name
-user: vagrant 
-group: vagrant
+user: avalente 
+# user: vagrant
+group: avalente 
+# group: vagrant
 
 # locatin of public key to add for ssh
 public_key: "{{ host_home }}/.ssh/ssh_key.pub"
