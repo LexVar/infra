@@ -1,0 +1,17 @@
+---
+# Create local .ssh dir and add host to known_hosts file
+
+- name : create .ssh dir
+  file:
+      path: "{{ host_home }}/.ssh"
+      state: directory
+  delegate_to: localhost
+
+- name: Add signatures to known_hosts and check if it's already there
+  lineinfile:
+      dest: "{{ host_home }}/.ssh/known_hosts"
+      create: yes
+      state: present
+      line: "{{ lookup('pipe', 'ssh-keyscan -t rsa {{ inventory_hostname }}') }}"
+      regexp: "{{ inventory_hostname }}"
+  delegate_to: localhost

@@ -3,9 +3,9 @@
 
 # ----- SSH ------
 # Remote user name
-user: avalente 
+ssh_user: avalente 
 # user: vagrant
-group: avalente 
+ssh_group: avalente 
 # group: vagrant
 
 # locatin of public key to add for ssh

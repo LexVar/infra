@@ -1,18 +1,4 @@
 ---
-# Add custom SSH configuration and user key
 
-- name: Add ssh public key
-  authorized_key:
-      user: "{{ user }}"
-      state: present
-      key: "{{ lookup('file', '{{ public_key }}') }}"
-
-- name: Copy SSH config file to remote hosts
-  template:
-      src: ../templates/etc/ssh/sshd_config.j2
-      dest: /etc/ssh/sshd_config
-      owner: root
-      group: root
-      mode: '0644'
-  become: true
-  notify: Reload SSH
+# - include: local.yml
+- include: config.yml

@@ -4,8 +4,8 @@ Port 22
 
 # Allow only the named users and groups to log in
 # Requires reload
-AllowUsers {{ user }}
-AllowGroups {{ group }}
+AllowUsers {{ ssh_user }}
+AllowGroups {{ ssh_group }}
 
 # TCP forwarding is convinient for tunnels, can be abused
 AllowTcpForwarding no
