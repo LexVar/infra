@@ -1,0 +1,6 @@
+- hosts: ssh_hosts
+  gather_facts: no
+  become: yes
+  roles:
+    # Setup ssh server with secure conf.
+    - role: ssh 

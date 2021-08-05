@@ -1,2 +1,14 @@
 ---
-# defaults file for ssh
+# defaults for ssh
+
+# ----- SSH ------
+# Remote user name
+ssh_user: avalente 
+# user: vagrant
+ssh_group: avalente 
+# group: vagrant
+
+# locatin of public key to add for ssh
+public_key: "{{ host_home }}/.ssh/ssh_key.pub"
+
+ssh_port: 22

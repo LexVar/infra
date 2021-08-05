@@ -1,5 +1,0 @@
-- hosts: ssh_hosts
-  gather_facts: yes
-  become: yes
-  roles:
-    - ssh

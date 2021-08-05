@@ -1,6 +1,6 @@
 #n Set to inet for IPv4-only, inet6 for IPv6-only, any for either one
 AddressFamily any
-Port 22
+Port {{ ssh_port }}
 
 # Allow only the named users and groups to log in
 # Requires reload

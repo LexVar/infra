@@ -1,4 +1,4 @@
 ---
 
-# - include: local.yml
 - include: config.yml
+- include: firewall.yml

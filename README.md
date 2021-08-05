@@ -1,8 +1,7 @@
 # Ansible configuration repo
 
 ### Roles
-- SSH configuration with public key authentication
-- Fedora workstation setup
+- SSH secure server configuration with public key authentication
 
 ### Setup
 ```
@@ -17,8 +16,7 @@ ansible-galaxy collection install ansible.posix
 ## TODO
 - [X] Include full ssh configuration
 - [X] Setup proper folder structure with roles
-- [ ] Firewall, Failban configuration playbook
-- [ ] Fedora workstation setup
-	- [X] Packages
-	- [ ] KDE configuration
-	- [ ] dotfiles
+- [ ] Wireguard role
+	- [ ] Docker install
+	- [ ] Container 
+	- [ ] Firewall configuration
