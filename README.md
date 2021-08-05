@@ -1,7 +1,8 @@
 # Ansible configuration repo
 
 ### Roles
-- SSH secure server configuration with public key authentication
+- SSH: secure server configuration with public key authentication
+- Wireguard: installs wireguard in docker container with nginx reverse proxy, downloads peer configs.
 
 ### Setup
 ```
@@ -16,7 +17,7 @@ ansible-galaxy collection install ansible.posix
 ## TODO
 - [X] Include full ssh configuration
 - [X] Setup proper folder structure with roles
-- [ ] Wireguard role
-	- [ ] Docker install
-	- [ ] Container 
-	- [ ] Firewall configuration
+- [X] Wireguard role
+	- [X] Docker install
+	- [X] Container 
+	- [X] Firewall configuration
