@@ -4,3 +4,7 @@
   roles:
     # Setup ssh server with secure conf.
     - role: ssh 
+      tags: upgrade
+
+    # Setup wireguard server
+    # - role: wireguard
