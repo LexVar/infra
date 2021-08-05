@@ -1,0 +1,16 @@
+user www-data;
+worker_processes auto;
+pid /run/nginx.pid;
+include /etc/nginx/modules-enabled/*.conf;
+
+events {
+	worker_connections 768;
+	# multi_accept on;
+}
+
+stream {
+    server {
+        listen {{ PROXY_PORT }} udp;
+        proxy_pass 127.0.0.1:{{ SERVERPORT }};
+    }
+}

@@ -1,0 +1,30 @@
+---
+# defaults file for wireguard
+
+# ----- WIREGUARD VARIABLES -----
+# Container name
+WIREGUARD_NAME: "wireguard"
+
+# user and group ID
+PUID: 1000
+PGID: 1000
+
+# TIMEZONE
+TZ: "Europe/Lisbon"
+
+# Server domain and port
+SERVERURL: "lexhome.ddns.net"
+SERVERPORT: 51820
+
+# Nginx reverse proxy PORT - to access wireguard
+PROXY_PORT: 443
+
+# Number of peers to create configurations
+PEERS: 2
+
+PEERDNS: "1.1.1.1"
+INTERNAL_SUBNET: "10.13.13.0"
+ALLOWEDIPS: "0.0.0.0/0"
+
+WIREGUARD_CONFIG: "/path/to/appdata/config"
+# -------------------------------

@@ -1,0 +1,48 @@
+- name: Install ufw
+  apt:
+      name: ufw
+      state: present
+
+- name: Set logging
+  community.general.ufw:
+    logging: 'on'
+
+# - name: Allow access to port 22 from local network 192.168.1.0/24
+#   community.general.ufw:
+#     rule: allow
+#     proto: tcp
+#     src: 192.168.1.0/24
+#     port: '22'
+
+- name: "Allow incoming access to port {{ SERVERPORT }} from localhost port {{ PROXY_PORT }}"
+  community.general.ufw:
+    rule: allow
+    direction: in
+    proto: udp
+    src: 127.0.0.1
+    dest: 127.0.0.1
+    from_port: "{{ PROXY_PORT }}"
+    to_port: "{{ SERVERPORT }}"
+
+- name: "Allow incoming access to port {{ PROXY_PORT }} from local network 192.168.1.0/24"
+  community.general.ufw:
+    rule: allow
+    direction: in
+    proto: udp
+    src: 192.168.1.0/24
+    dest: 127.0.0.1
+    to_port: "{{ PROXY_PORT }}"
+
+- name: Default to reject incoming traffic
+  community.general.ufw:
+    direction: incoming
+    default: reject
+
+- name: Default to allow outgoing traffic
+  community.general.ufw:
+    direction: outgoing
+    default: allow
+
+- name: Enable UFW
+  community.general.ufw:
+    state: enabled
