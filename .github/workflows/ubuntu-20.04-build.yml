@@ -1,0 +1,54 @@
+# BASIC WORKFLOW
+name: Ubuntu 20.04 build
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  debian10-build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-20.04
+    env:
+      # Nginx version variables
+      REQUIREMENTS: requirements.yml
+      INVENTORY: inventory.ini
+      PLAYBOOK: example_play.yml
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    # Steps will now run on the container
+    steps:
+      # Check out repository
+      - uses: actions/checkout@v2
+
+      - name: Log machine information
+        run: cat /etc/os-release
+
+      - name: Install packages (ansible, git, ..)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y git curl build-essential python3
+
+          # Install necessary packages for ansible
+          echo 'deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main' | sudo tee /etc/apt/sources.list.d/ansible.list
+          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
+          sudo apt-get install --fix-missing
+
+          sudo apt-get install -y ansible
+
+      - name: Download ansible dependencies
+        run: |
+          # Install collections and roles in requirements file
+          ansible-galaxy install -r $REQUIREMENTS
+          ansible-galaxy collection install -r $REQUIREMENTS
+
+      - name: Run playbook
+        run: |
+          # Add localhost to inventory.ini to run ansible locally
+          echo 'localhost' > $INVENTORY
+          ansible-playbook --connection=local -i inventory.ini $PLAYBOOK -u root
