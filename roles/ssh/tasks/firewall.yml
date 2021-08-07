@@ -4,26 +4,26 @@
       state: present
 
 - name: Set logging
-  community.general.ufw:
+  ufw:
     logging: 'on'
 
 - name: "Allow access to port {{ ssh_port }} from local network 192.168.1.0/24"
-  community.general.ufw:
+  ufw:
     rule: allow
     proto: tcp
     src: 192.168.1.0/24
     port: "{{ ssh_port }}"
 
 - name: Default to reject incoming traffic
-  community.general.ufw:
+  ufw:
     direction: incoming
     default: reject
 
 - name: Default to allow outgoing traffic
-  community.general.ufw:
+  ufw:
     direction: outgoing
     default: allow
 
 - name: Enable UFW
-  community.general.ufw:
+  ufw:
     state: enabled

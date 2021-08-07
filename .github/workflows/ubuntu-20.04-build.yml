@@ -11,7 +11,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  debian10-build:
+  ubuntu20-04-build:
     # The type of runner that the job will run on
     runs-on: ubuntu-20.04
     env:
@@ -44,11 +44,12 @@ jobs:
       - name: Download ansible dependencies
         run: |
           # Install collections and roles in requirements file
+          mkdir collections
           ansible-galaxy install -r $REQUIREMENTS
-          ansible-galaxy collection install -r $REQUIREMENTS
+          ansible-galaxy collection install -r $REQUIREMENTS -p ./collections
 
       - name: Run playbook
         run: |
           # Add localhost to inventory.ini to run ansible locally
           echo 'localhost' > $INVENTORY
-          ansible-playbook --connection=local -i inventory.ini $PLAYBOOK -u root
+          sudo ansible-playbook --connection=local -i inventory.ini $PLAYBOOK

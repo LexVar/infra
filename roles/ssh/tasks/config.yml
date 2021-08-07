@@ -1,11 +1,24 @@
 ---
-# Add custom SSH configuration and user key
+# Create user and group
+# Add user's ssh public key
+# Add custom SSH configuration
+
+- name: "Ensure group {{ ssh_group }} exists"
+  group:
+    name: "{{ ssh_group }}"
+    state: present
+
+- name: "Add a priviliged user {{ ssh_user }} with group {{ ssh_group }}"
+  user:
+    name: "{{ ssh_user }}"
+    shell: /bin/bash
+    groups: "{{ ssh_group }},sudo"
 
 - name: Add ssh public key
   authorized_key:
     user: "{{ ssh_user }}"
     state: present
-    key: "{{ lookup('file', '{{ public_key }}') }}"
+    key: "{{ lookup('file', '{{ private_key }}.pub') }}"
 
 - name: Copy SSH config file to remote hosts
   template:

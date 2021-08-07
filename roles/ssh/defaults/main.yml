@@ -9,6 +9,6 @@ ssh_group: avalente
 # group: vagrant
 
 # locatin of public key to add for ssh
-public_key: "{{ host_home }}/.ssh/ssh_key.pub"
+private_key: "{{ host_home }}/.ssh/ssh_key"
 
 ssh_port: 22

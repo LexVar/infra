@@ -1,0 +1,13 @@
+---
+# Generate random key locally
+
+- name: Generate an OpenSSH ecdsa keypair
+  local_action:
+    module: community.crypto.openssh_keypair
+    path: "{{ private_key }}"
+    size: 256
+    type: ecdsa
+    regenerate: full_idempotence
+  run_once: true
+    # connection: local
+    # delegate_to: 127.0.0.1
