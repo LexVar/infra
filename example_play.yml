@@ -1,4 +1,4 @@
-- hosts: ssh_hosts
+- hosts: hosts
   gather_facts: no
   become: yes
   roles:

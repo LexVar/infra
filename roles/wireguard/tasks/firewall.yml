@@ -3,34 +3,22 @@
       name: ufw
       state: present
 
-- name: Set logging
+- name: Set ufw logging on
   community.general.ufw:
     logging: 'on'
 
-# - name: Allow access to port 22 from local network 192.168.1.0/24
-#   community.general.ufw:
-#     rule: allow
-#     proto: tcp
-#     src: 192.168.1.0/24
-#     port: '22'
-
-- name: "Allow incoming access to port {{ SERVERPORT }} from localhost port {{ PROXY_PORT }}"
+- name: "Deny incoming to port {{ SERVERPORT }}"
   community.general.ufw:
-    rule: allow
+    rule: deny
     direction: in
     proto: udp
-    src: 127.0.0.1
-    dest: 127.0.0.1
-    from_port: "{{ PROXY_PORT }}"
     to_port: "{{ SERVERPORT }}"
 
-- name: "Allow incoming access to port {{ PROXY_PORT }} from local network 192.168.1.0/24"
+- name: "Allow incoming access to port {{ PROXY_PORT }}"
   community.general.ufw:
     rule: allow
     direction: in
     proto: udp
-    src: 192.168.1.0/24
-    dest: 127.0.0.1
     to_port: "{{ PROXY_PORT }}"
 
 - name: Default to reject incoming traffic
