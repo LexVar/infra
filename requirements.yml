@@ -1,4 +1,10 @@
+# ansible 2.9+ is necessary
 collections:
-- name: 
-    - ansible.posix
-    - community.general
+# from ansible galaxy
+- name: community.general
+- name: ansible.posix
+
+roles:
+# from GitHub
+- src: https://github.com/LexVar/ansible-prometheus
+  version: master

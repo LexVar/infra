@@ -1,8 +1,13 @@
-- hosts: monitors
+- hosts: all
   become: yes
   roles:
     - lexvar.prometheus
 
   vars:
-    prometheus_components: [ "prometheus" ]
+    prometheus_components: 
+      - prometheus
+      - alertmanager
+      - node_exporter
     prometheus_version:                 2.28.1
+    prometheus_node_exporter_version:   1.2.0
+    prometheus_alertmanager_version:    0.22.2
