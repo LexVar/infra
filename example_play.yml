@@ -1,14 +1,14 @@
 - hosts: all
   gather_facts: no
   become: yes
+
+  vars_files:
+    - vars.yml
+
   roles:
     # Setup ssh server with secure conf.
     - role: ssh 
       tags: upgrade
-      vars:
-        private_key:  "/tmp/ssh_key"
-        ssh_user:     "ssh1"
-        ssh_group:    "ssh1"
 
     # Setup wireguard server
     # - role: wireguard

@@ -2,3 +2,4 @@ Vagrantfile
 *.swp
 .vagrant*
 *.sh
+collections/

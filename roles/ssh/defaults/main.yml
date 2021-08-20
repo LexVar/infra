@@ -11,4 +11,4 @@ ssh_group: avalente
 # locatin of public key to add for ssh
 private_key: "{{ host_home }}/.ssh/ssh_key"
 
-ssh_port: 22
+ssh_port: "22"

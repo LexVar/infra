@@ -1,5 +1,7 @@
 # Infra and configuration code
 
+[![Ubuntu 20.04 build](https://github.com/LexVar/infra/actions/workflows/ubuntu-20.04-build.yml/badge.svg)](https://github.com/LexVar/infra/actions/workflows/ubuntu-20.04-build.yml)
+
 This repo contains all my infrastructure and configuration code for my home lab.
 
 ### Roles

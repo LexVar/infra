@@ -43,7 +43,7 @@ jobs:
 
       - name: Download ansible dependencies
         run: |
-          # Install collections and roles in requirements file
+          # Install collections and roles from requirements file
           mkdir collections
           ansible-galaxy install -r $REQUIREMENTS
           ansible-galaxy collection install -r $REQUIREMENTS -p ./collections
