@@ -3,3 +3,4 @@ Vagrantfile
 .vagrant*
 *.sh
 collections/
+inventory.ini

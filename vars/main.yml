@@ -1,7 +1,9 @@
+---
+
 # Home folder
 host_home: "{{ lookup('env','HOME') }}"
 
 # ssh role variables
-private_key:  "/tmp/ssh_key"
-ssh_user:     "ssh1"
-ssh_group:    "ssh1"
+private_key: "/tmp/ssh_key"
+
+ssh_user: "admin2"

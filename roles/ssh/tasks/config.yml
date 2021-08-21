@@ -1,18 +1,14 @@
 ---
-# Create user and group
+# Create privileged user
 # Add user's ssh public key
 # Add custom SSH configuration
 
-- name: "Ensure group {{ ssh_group }} exists"
-  group:
-    name: "{{ ssh_group }}"
-    state: present
-
-- name: "Add a priviliged user {{ ssh_user }} with group {{ ssh_group }}"
+- name: "Add a priviliged user {{ ssh_user }}"
   user:
     name: "{{ ssh_user }}"
     shell: /bin/bash
-    groups: "{{ ssh_group }},sudo"
+    groups: "sudo"
+    password: "{{ ssh_user_password }}"
 
 - name: Add ssh public key
   authorized_key:
@@ -22,7 +18,7 @@
 
 - name: Copy SSH config file to remote hosts
   template:
-    src: ../templates/etc/ssh/sshd_config.j2
+    src: etc/ssh/sshd_config.j2
     dest: /etc/ssh/sshd_config
     owner: root
     group: root

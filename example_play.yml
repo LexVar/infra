@@ -1,14 +1,15 @@
+---
+
 - hosts: all
-  gather_facts: no
-  become: yes
+  gather_facts: false
+  become: true
 
   vars_files:
-    - vars.yml
+    - vars/main.yml
+    - vars/passwords.yml
 
   roles:
     # Setup ssh server with secure conf.
-    - role: ssh 
-      tags: upgrade
+    - role: ssh
 
-    # Setup wireguard server
     # - role: wireguard

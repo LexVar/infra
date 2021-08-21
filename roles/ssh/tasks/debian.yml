@@ -3,8 +3,8 @@
 
 - name: Upgrades OpenSSH server
   apt:
-      name:
-        - openssh-server
-      state: latest
-      update_cache: yes
+    name:
+      - openssh-server
+    state: latest
+    update_cache: true
   tags: upgrade

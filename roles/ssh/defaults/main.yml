@@ -3,10 +3,10 @@
 
 # ----- SSH ------
 # Remote user name
-ssh_user: avalente 
-# user: vagrant
-ssh_group: avalente 
-# group: vagrant
+ssh_user: admin
+
+# This should be changed using ansible vault
+ssh_user_password: password
 
 # locatin of public key to add for ssh
 private_key: "{{ host_home }}/.ssh/ssh_key"

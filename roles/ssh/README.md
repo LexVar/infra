@@ -10,8 +10,8 @@ Role Variables
 --------------
 
 Some variables can be set:
-- `ssh_user` and `ssh_group` - remote user and group allowed to be logged in
-- `public_key` - path for the local public key which will be loaded to the servers
+- `ssh_user` - remote previliged user allowed to log in
+- `private_key` - local private key to be loaded
 - `ssh_port` - ssh server port
 
 Dependencies
@@ -26,9 +26,8 @@ Example Playbook
       roles:
          - ssh
 	   vars:
-	     ssh_user: 'avalente'
-	     ssh_group: 'avalente'
-	     ssh_group: "/home/user/.ssh/ssh_key.pub"
+	     ssh_user: 'admin'
+	     private_key: "/home/admin/.ssh/ssh_key"
 	     ssh_port: '22'
 ```
 

@@ -1,11 +1,12 @@
+Include /etc/ssh/sshd_config.d/*.conf
+
 #n Set to inet for IPv4-only, inet6 for IPv6-only, any for either one
 AddressFamily any
 Port {{ ssh_port }}
 
 # Allow only the named users and groups to log in
 # Requires reload
-AllowUsers {{ ssh_user }}
-AllowGroups {{ ssh_group }}
+AllowUsers {% if ansible_user is defined and ansible_user != ssh_user %} {{ ssh_user }} {{ ansible_user }} {% else %} {{ ssh_user }} {% endif %}
 
 # TCP forwarding is convinient for tunnels, can be abused
 AllowTcpForwarding no

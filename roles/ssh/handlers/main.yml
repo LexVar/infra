@@ -2,5 +2,5 @@
 # handlers file for ssh
 - name: Reload SSH
   service:
-    name: sshd
+    name: ssh
     state: reloaded

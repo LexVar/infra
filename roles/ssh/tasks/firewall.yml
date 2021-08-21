@@ -1,7 +1,9 @@
+---
+
 - name: Install ufw
   apt:
-      name: ufw
-      state: present
+    name: ufw
+    state: present
 
 - name: Set logging
   ufw:
