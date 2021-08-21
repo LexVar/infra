@@ -22,7 +22,6 @@ ansible-galaxy install -r requirements.yml && ansible-galaxy collection install 
 ### Usage Examples
 
 This repo contains example files for using these roles:
-- inventory.ini
 - ansible.cfg
 - ssh and wireguard roles - `example_play.yml`
 - prometheus role - `example_prometheus.yml`
@@ -37,7 +36,8 @@ This repo contains example files for using these roles:
 - [X] SSH
 	- [X] Custom sshd_config
 	- [X] Firewall configuration
-	- [ ] Local key generation with tag
+	- [X] Local key generation
+- [ ] Call firewall and docker-arm roles
 - [X] Wireguard role
 	- [X] Docker install
 	- [X] Container 

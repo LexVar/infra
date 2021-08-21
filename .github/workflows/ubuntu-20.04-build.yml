@@ -16,9 +16,8 @@ jobs:
     runs-on: ubuntu-20.04
 
     env:
-      # Nginx version variables
+      # Playbook variables
       REQUIREMENTS: requirements.yml
-      INVENTORY: inventory.ini
       PLAYBOOK: example_play.yml
 
     steps:
@@ -33,11 +32,10 @@ jobs:
       - name: Log machine information
         run: cat /etc/os-release
 
-      - name: Install packages (yamllint, git)
+      - name: Install packages (ansible, yamllint, git)
         run: |
-          sudo apt install -y git
-          pip3 install yamllint
-          # pip3 install ansible ansible-lint yamllint
+          sudo apt install -y ansible git
+          pip3 install ansible yamllint ansible-lint
 
       - name: Yaml Lint
         run: yamllint .
@@ -51,17 +49,16 @@ jobs:
           ansible-galaxy install -r $REQUIREMENTS
           ansible-galaxy collection install -r $REQUIREMENTS -p ./collections
 
-      - name: Lint Ansible Playbook
-        uses: ansible/ansible-lint-action@master
-        with:
-          targets: $PLAYBOOK
+      - name: Lint Syntax of Ansible Playbook
+        run: |
+          ansible-lint -v --force-color -c .ansible-lint $PLAYBOOK
         env:
-          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
 
       - name: Run playbook
         run: |
           # Add localhost to inventory.ini to run ansible locally
-          echo 'localhost' > $INVENTORY
+          echo 'localhost' > inventory.ini
           sudo ansible-playbook --connection=local -i inventory.ini $PLAYBOOK
         env:
           ANSIBLE_FORCE_COLOR: '1'

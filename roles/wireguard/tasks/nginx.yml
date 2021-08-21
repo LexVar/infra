@@ -1,11 +1,9 @@
-- name: Install nginx
-  apt:
-      name: nginx
-      state: present
+---
+# nginx reverse proxy configuration
 
 - name: Copy nginx configuration for reverse proxy to wireguard
   template:
-    src: ../templates/etc/nginx/nginx.conf.j2
+    src: etc/nginx/nginx.conf.j2
     dest: /etc/nginx/nginx.conf
     owner: root
     group: root

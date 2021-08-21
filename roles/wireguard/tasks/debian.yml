@@ -3,8 +3,9 @@
 
 - name: Install docker
   apt:
-      name:
-        - docker.io
-      state: present
-      update_cache: yes
+    name:
+      - docker.io
+      - nginx
+    state: present
+    update_cache: true
   notify: Restart docker
