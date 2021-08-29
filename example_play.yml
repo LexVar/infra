@@ -1,7 +1,7 @@
 ---
 
 - hosts: all
-  gather_facts: false
+  gather_facts: true
   become: true
 
   vars_files:
@@ -17,3 +17,4 @@
     # - wireguard
 
     # - geerlingguy.nginx
+    # - lexvar.prometheus

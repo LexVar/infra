@@ -23,12 +23,13 @@ ansible-galaxy install -r requirements.yml && ansible-galaxy collection install 
 
 This repo contains example files for using these roles:
 - ansible.cfg
-- ssh and wireguard roles - `example_play.yml`
-- prometheus role - `example_prometheus.yml`
+- ssh, wireguard and prometheus roles - `example_play.yml`
 
 ### Tools
 - ansible 2.9+
 - python 3
+- ansible-lint 5.1.2
+- yamllint 1.26.2
 
 ## TODO
 - [X] Include full ssh configuration
@@ -37,9 +38,11 @@ This repo contains example files for using these roles:
 	- [X] Custom sshd_config
 	- [X] Firewall configuration
 	- [X] Local key generation
-- [ ] Call firewall and docker-arm roles
-- [X] Wireguard role
+- [X] Call firewall role
+- [ ] Wireguard role
 	- [X] Docker install
 	- [X] Container 
 	- [X] Firewall configuration
-- [ ] CI test pipeline
+	- [ ] Add changed when to docker run
+- [ ] Separate nginx role for config
+- [ ] CI test pipeline with molecule
