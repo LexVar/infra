@@ -1,0 +1,8 @@
+---
+# tasks file for fedora
+
+- include: software.yml
+
+- include: flatpak.yml
+
+- include: dotfiles.yml

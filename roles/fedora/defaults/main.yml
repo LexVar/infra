@@ -1,0 +1,129 @@
+---
+# defaults file for fedora
+
+# host user
+user: avalente
+
+# host user's home dir
+user_home: "/home/{{ user }}"
+
+# ------------------ Packages ------------------
+rpmfusion:
+  - "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_facts.distribution_version }}.noarch.rpm"
+  - "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts.distribution_version }}.noarch.rpm"
+
+gui_packages:
+  - keepassxc
+  - qbittorrent
+  - libreoffice
+  - elisa-player
+  - kmail
+  - korganizer
+  - vlc
+  - kate
+  - latte-dock
+  - timeshift
+  - flatpak
+  - VirtualBox
+  - VirtualBox-kmodsrc
+  - VirtualBox-server
+  - fedy
+
+drivers_packages:
+  - mesa-vdpau-drivers
+  - mesa-vulkan-drivers
+  - libva-vdpau-driver
+  - libvdpau-va-gl
+  - libvdpau-devel
+
+cmd_packages:
+  - fish
+  - python3
+  - python3-pip
+  - python3-devel
+  - git
+  - vim
+  - vim-X11
+  - htop
+  - youtube-dl
+  - tmux
+  - xdotool
+  - wmctrl
+  - libinput
+  - libinput-devel
+  - libinput-utils
+  - xclip
+  - gcc
+  - gcc-c++
+  - make
+  - duplicity
+  - rclone
+  - rsync
+  - ruby
+  - vagrant
+  - ansible
+  - xterm
+  - fzf
+  - powertop
+  - tlp
+  - tuned-utils
+  - thermald
+  - msr-tools
+  - lm_sensors
+  - hdparm
+  - acpi
+  - wget
+  - nmap
+
+pip_packages:
+  - ansible-lint
+  - molecule[docker]
+  - docker
+  - yamllint
+
+bloat_packages:
+  - dragon
+  - mediawriter
+  - akregator
+  - kget
+  - juk
+  - kmahjongg
+  - khelpcenter
+  - tigervnc-server-minimal
+  - kmines
+  - kmousetool
+  - kolourpaint
+  - kmouth
+  - kpat
+  - kgpg
+  - kcharselect
+  - dnfdragora
+  - krdc
+  - krfb
+  - pim-sieve
+  - konversation
+
+misc_packages:
+  - fontawesome-fonts
+  - jetbrains-mono-fonts-all
+  - python3-psutil
+  - roboto-fontface-fonts
+  - kio-gdrive
+  - kaccounts-integration
+  - kaccounts-providers
+  - ktp-accounts-kcm
+
+flatpak_packages:
+  - com.spotify.Client
+  - us.zoom.Zoom
+  - com.anydesk.Anydesk
+  - com.skype.Client
+  - com.discordapp.Discord
+  - com.slack.Slack
+  - com.microsoft.Teams
+# ----------------------------------------------
+# DOTFILES
+# ----------------------------------------------
+
+# Repo for dotfiles
+dotfiles_repo: "https://github.com/LexVar/dotfiles.git"

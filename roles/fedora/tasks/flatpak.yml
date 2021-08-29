@@ -1,0 +1,18 @@
+---
+# tasks file for fedora
+
+- block:
+  - name: Add the flathub flatpak repository
+    community.general.flatpak_remote:
+      name: flathub
+      state: present
+      flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
+      method: user
+
+  - name: Install flatpak apps
+    community.general.flatpak:
+      name: "{{ item }}"
+      method: user
+      state: present
+    with_items: "{{ flatpak_packages }}"
+  become: false

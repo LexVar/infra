@@ -1,0 +1,70 @@
+---
+# tasks file for fedora
+
+- block:
+  - name: Remove unecessary packages
+    dnf:
+      state: absent
+      name: "{{ bloat_packages }}"
+
+  - name: Upgrade all packages
+    dnf:
+      name: "*"
+      state: latest
+
+  - name: Install rpmfusion repos
+    dnf:
+      state: latest
+      disable_gpg_check: true
+      name: "{{ rpmfusion }}"
+
+  - name: Enable Fedy copr
+    community.general.copr:
+      state: enabled
+      name: kwizart/fedy
+
+  - name: Install drivers
+    dnf:
+      update_cache: true
+      state: latest
+      name: "{{ drivers_packages }}"
+
+  - name: Install gui programs
+    dnf:
+      state: latest
+      name: "{{ gui_packages }}"
+
+  - name: Install command line tools
+    dnf:
+      state: latest
+      name: "{{ cmd_packages }}"
+
+  - name: Install miscellanious packages
+    dnf:
+      state: present
+      name: "{{ misc_packages }}"
+
+  # Apply to entire block
+  become: true
+
+- stat: path="{{ user_home }}/.local/share/omf"
+  register: omf_dir
+
+- block:
+    - name: Git checkout omf repo
+      git:
+        repo: "https://github.com/oh-my-fish/oh-my-fish"
+        dest: "/tmp/omf"
+        clone: true
+
+    - name: Install omf for fish shell
+      command: /tmp/omf/bin/install -y --offline --noninteractive
+
+  when: omf_dir.stat.exists == false
+  become_user: "{{ user }}"
+
+- name: Change the user's shell to fish
+  ansible.builtin.user:
+    name: "{{ user }}"
+    shell: /bin/fish
+  become: true
