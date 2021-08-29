@@ -1,17 +1,19 @@
 ---
 # handlers file for wireguard
 - name: Reload docker
-  systemd:
+  service:
     name: docker
     state: reloaded
 
 - name: Restart docker
-  systemd:
+  service:
     name: docker
     state: restarted
-    daemon_reload: true
+
+# - name: Reload nginx
+#   command: systemctl daemon-reload
 
 - name: Reload nginx
-  systemd:
+  service:
     name: nginx
     state: reloaded

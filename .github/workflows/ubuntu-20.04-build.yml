@@ -47,7 +47,7 @@ jobs:
           # Install collections and roles from requirements file
           mkdir collections
           ansible-galaxy install -r $REQUIREMENTS
-          ansible-galaxy collection install -r $REQUIREMENTS -p ./collections
+          ansible-galaxy collection install -r $REQUIREMENTS
 
       - name: Lint Syntax of Ansible Playbook
         run: |

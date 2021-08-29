@@ -2,19 +2,19 @@
 # tasks file for wireguard
 
 - name: Start wireguard container
-  command: "docker run -d --name={{ WIREGUARD_NAME }} \
+  command: "docker run -d --name={{ wireguard_name }} \
             --cap-add=NET_ADMIN \
             --cap-add=SYS_MODULE \
-            -e PUID={{ PUID }} -e PGID={{ PGID }} \
-            -e TZ={{ TZ }} \
-            -e SERVERURL={{ SERVERURL }} \
-            -e SERVERPORT={{ SERVERPORT }} \
-            -e PEERS={{ PEERS }} \
-            -e PEERDNS={{ PEERDNS }} \
-            -e INTERNAL_SUBNET={{ INTERNAL_SUBNET }} \
-            -e ALLOWEDIPS={{ ALLOWEDIPS }} \
-            -p 127.0.0.1:{{ SERVERPORT }}:{{ SERVERPORT }}/udp \
-            -v {{ WIREGUARD_CONFIG }}:/config \
+            -e PUID={{ puid }} -e PGID={{ pgid }} \
+            -e TZ={{ timezone }} \
+            -e SERVERURL={{ wireguard_url }} \
+            -e SERVERPORT={{ wireguard_port }} \
+            -e PEERS={{ num_peers }} \
+            -e PEERDNS={{ peer_dns }} \
+            -e INTERNAL_SUBNET={{ internal_subnet }} \
+            -e ALLOWEDIPS={{ allowed_ips }} \
+            -p 127.0.0.1:{{ wireguard_port }}:{{ wireguard_port }}/udp \
+            -v {{ wireguard_config }}:/config \
             -v /lib/modules:/lib/modules \
             --sysctl=net.ipv4.conf.all.src_valid_mark=1 \
             --restart unless-stopped ghcr.io/linuxserver/wireguard"
@@ -22,13 +22,15 @@
 - name: Get wireguard container logs
   command: docker logs wireguard
   register: peers_config
+  changed_when: false
 
-- name: Print peers configuration
-  debug:
-    var: peers_config
+# - name: Print peers configuration
+#   debug:
+#     var: peers_config
 
 - name: Get wireguard configuration for peers
   fetch:
-    src: "{{ WIREGUARD_CONFIG }}/peer{{ item }}/peer{{ item }}.png"
+    src: "{{ wireguard_config }}/peer{{ item }}/peer{{ item }}.png"
     dest: /tmp/
-  with_sequence: start=1 end=2 stride=1
+  with_sequence: start=1 end={{ num_peers } stride=1
+  changed_when: true

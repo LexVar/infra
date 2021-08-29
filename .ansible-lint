@@ -2,3 +2,5 @@ warn_list:
   - deprecated-local-action
   - meta-no-info
   - package-latest
+  - role-name
+  - yaml

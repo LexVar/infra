@@ -2,5 +2,5 @@ Vagrantfile
 *.swp
 .vagrant*
 *.sh
-collections/
+.ansible/
 inventory.ini

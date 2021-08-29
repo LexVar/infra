@@ -9,7 +9,11 @@
     - vars/passwords.yml
 
   roles:
-    # Setup ssh server with secure conf.
-    - role: ssh
+    # Setup firewall
+    - geerlingguy.firewall
 
-    # - role: wireguard
+    - ssh
+
+    # - wireguard
+
+    # - geerlingguy.nginx
