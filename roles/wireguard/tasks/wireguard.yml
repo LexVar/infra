@@ -24,13 +24,13 @@
   register: peers_config
   changed_when: false
 
-# - name: Print peers configuration
-#   debug:
-#     var: peers_config
+- name: Print peers configuration
+  debug:
+    var: peers_config
 
 - name: Get wireguard configuration for peers
   fetch:
     src: "{{ wireguard_config }}/peer{{ item }}/peer{{ item }}.png"
     dest: /tmp/
-  with_sequence: start=1 end={{ num_peers } stride=1
+  with_sequence: start=1 end="{{ num_peers }}" stride=1
   changed_when: true

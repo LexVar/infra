@@ -4,3 +4,5 @@ warn_list:
   - package-latest
   - role-name
   - yaml
+  - risky-shell-pipe
+  - no-changed-when

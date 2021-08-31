@@ -1,0 +1,9 @@
+---
+
+pip_install_packages: "{{ pip_packages }}"
+
+docker_service_state: stopped
+docker_install_compose: true
+docker_service_enabled: false
+docker_users:
+  - avalente

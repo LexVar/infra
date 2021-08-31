@@ -1,11 +1,11 @@
 ---
 # tasks file for wireguard
 
-- name: Install docker and nginx
-  apt:
-    name:
-      - docker.io
-      - nginx
-    state: present
-    update_cache: true
-  notify: Restart docker
+# - name: Install docker and nginx
+#   apt:
+#     name:
+#       - docker.io
+#       - nginx
+#     state: present
+#     update_cache: true
+#   notify: Restart docker

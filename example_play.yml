@@ -8,13 +8,30 @@
     - vars/main.yml
     - vars/passwords.yml
 
+  pre_tasks:
+    - name: Update apt cache if needed.
+      apt: update_cache=yes cache_valid_time=3600
+
+    - name: Install nginx
+      apt:
+        name: nginx
+        state: present
+
+    - name: Install docker on ARM
+      apt:
+        name: docker.io
+        state: present
+        update_cache: true
+      notify: Restart docker
+      when: ansible_architecture == "aarch64" or ansible_architecture == "armv7l"
+
   roles:
-    # Setup firewall
-    - geerlingguy.firewall
+    - role: geerlingguy.docker
+      when: ansible_architecture != "aarch64" and ansible_architecture != "armv7l"
 
-    - ssh
-
-    # - wireguard
+    - role: geerlingguy.firewall
+    - role: ssh
+    - role: wireguard
 
     # - geerlingguy.nginx
     # - lexvar.prometheus

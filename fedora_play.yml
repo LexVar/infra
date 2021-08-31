@@ -1,0 +1,14 @@
+---
+
+- hosts: localhost
+  gather_facts: true
+  become: true
+  connection: local
+
+  vars:
+    - vars/fedora.yml
+
+  roles:
+    - role: fedora
+    - role: geerlingguy.pip
+    - role: geerlingguy.docker

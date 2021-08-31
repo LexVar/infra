@@ -10,7 +10,7 @@ events {
 
 stream {
     server {
-        listen {{ PROXY_PORT }} udp;
-        proxy_pass 127.0.0.1:{{ SERVERPORT }};
+        listen {{ proxy_port }} udp;
+        proxy_pass 127.0.0.1:{{ wireguard_port }};
     }
 }
