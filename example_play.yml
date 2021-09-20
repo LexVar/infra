@@ -8,6 +8,7 @@
     - vars/main.yml
     - vars/passwords.yml
 
+
   pre_tasks:
     - name: Update apt cache if needed.
       apt: update_cache=yes cache_valid_time=3600
@@ -26,12 +27,18 @@
       when: ansible_architecture == "aarch64" or ansible_architecture == "armv7l"
 
   roles:
+    - role: geerlingguy.firewall
+    - role: ssh
+
     - role: geerlingguy.docker
       when: ansible_architecture != "aarch64" and ansible_architecture != "armv7l"
 
-    - role: geerlingguy.firewall
-    - role: ssh
     - role: wireguard
+    # - role: geerlingguy.nginx
+    # - role: lexvar.prometheus
 
-    # - geerlingguy.nginx
-    # - lexvar.prometheus
+  handlers:
+    - name: Restart docker
+      service:
+        name: docker
+        state: restarted

@@ -10,6 +10,14 @@
     groups: "sudo"
     password: "{{ ssh_user_password }}"
 
+- name: "Give the user passwordless sudo"
+  lineinfile:
+    path: /etc/sudoers
+    state: present
+    regexp: '^%{{ ssh_user }} ALL='
+    line: '%{{ ssh_user }} ALL=(ALL) NOPASSWD: ALL'
+    validate: '/usr/sbin/visudo -cf %s'
+
 - name: Add ssh public key
   ansible.posix.authorized_key:
     user: "{{ ssh_user }}"

@@ -4,14 +4,19 @@
 host_home: "{{ lookup('env','HOME') }}"
 
 # ssh role variables
-private_key: "/tmp/ssh_key"
+# private_key: "/tmp/ssh_key"
+private_key: "~/.ssh/ssh_key"
 
-ssh_user: "admin2"
+ssh_user: "avalente"
 
 # Firewall variables
 firewall_allowed_tcp_ports:
   - "22"
-  - "443"
+  - "80"
+  - "53"
+
+firewall_allowed_udp_ports:
+  - "53"
 
 # firewall_additional_rules:
 #   - iptables -A INPUT -p tcp -m tcp --dport 22 -s 192.168.1.0/24 -j ACCEPT
