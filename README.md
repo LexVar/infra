@@ -24,6 +24,7 @@ ansible-galaxy install -r requirements.yml && ansible-galaxy collection install 
 This repo contains example files for using these roles:
 - ansible.cfg
 - ssh, wireguard and prometheus roles - `example_play.yml`
+- fedora workstation setup - `fedora.yml`
 
 ### Tools
 - ansible 2.9+
@@ -34,15 +35,19 @@ This repo contains example files for using these roles:
 ## TODO
 - [X] Include full ssh configuration
 - [X] Setup proper folder structure with roles
-- [X] SSH
+- [ ] Fedora Workstation role
+	- [ ] Fix dotfiles git pull
+- [O] SSH
 	- [X] Custom sshd_config
 	- [X] Firewall configuration
 	- [X] Local key generation
+	- [ ] Add RHEL support
 - [X] Call firewall role
-- [ ] Wireguard role
+- [o] Wireguard role
 	- [X] Docker install
 	- [X] Container 
 	- [X] Firewall configuration
+	- [ ] Add RHEL support
 	- [ ] Add changed when to docker run
 - [ ] Separate nginx role for config
 - [ ] CI test pipeline with molecule

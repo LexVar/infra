@@ -11,4 +11,3 @@
   roles:
     - role: fedora
     - role: geerlingguy.pip
-    - role: geerlingguy.docker

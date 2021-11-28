@@ -1,0 +1,23 @@
+- name: Disable unecessary dnf-makecache service
+  systemd:
+    name: dnf-makecache.service
+    enabled: no
+    state: stopped
+
+- name: Disable unecessary dnf-makecache timer
+  systemd:
+    name: dnf-makecache.timer
+    enabled: no
+    state: stopped
+
+- name: Enable tlp service
+  systemd:
+    name: tlp
+    enabled: yes
+    state: started
+
+- name: Enable powertop service
+  systemd:
+    name: powertop
+    enabled: yes
+    state: started

@@ -8,9 +8,10 @@ collections:
   - name: ansible.posix
 
 roles:
-  # from GitHub
-  - src: https://github.com/LexVar/ansible-prometheus
-    version: master
+  - name: cloudalchemy.grafana
+    version: 0.17.0
+  - name: cloudalchemy.prometheus
+    version: 4.0.0
   - name: geerlingguy.firewall
     version: 2.5.0
   - name: geerlingguy.pip

@@ -28,6 +28,7 @@ gui_packages:
   - VirtualBox-kmodsrc
   - VirtualBox-server
   - fedy
+  - simplescreenrecorder
 
 drivers_packages:
   - mesa-vdpau-drivers
@@ -67,19 +68,27 @@ cmd_packages:
   - powertop
   - tlp
   - tuned-utils
-  - thermald
   - msr-tools
   - lm_sensors
   - hdparm
   - acpi
   - wget
   - nmap
+  - ffmpeg
+  - mpv
+  - hugo
+  - fontawesome-fonts
+  - jetbrains-mono-fonts-all
+  - python3-psutil
+  - roboto-fontface-fonts
+  - podman
 
 pip_packages:
   - ansible-lint
   - molecule[docker]
   - docker
   - yamllint
+  - vimwiki-markdown
 
 bloat_packages:
   - dragon
@@ -102,24 +111,20 @@ bloat_packages:
   - krfb
   - pim-sieve
   - konversation
+  - plasma-discover-notifier
 
 misc_packages:
-  - fontawesome-fonts
-  - jetbrains-mono-fonts-all
-  - python3-psutil
-  - roboto-fontface-fonts
   - kio-gdrive
   - kaccounts-integration
   - kaccounts-providers
   - ktp-accounts-kcm
 
 flatpak_packages:
-  - com.spotify.Client
   - us.zoom.Zoom
   - com.anydesk.Anydesk
   - com.skype.Client
   - com.discordapp.Discord
-  - com.slack.Slack
+  - com.stremio.Stremio
   - com.microsoft.Teams
 # ----------------------------------------------
 # DOTFILES
