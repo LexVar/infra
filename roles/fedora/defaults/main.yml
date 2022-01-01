@@ -2,133 +2,30 @@
 # defaults file for fedora
 
 # host user
-user: avalente
-
-# host user's home dir
-user_home: "/home/{{ user }}"
+user: user
 
 # ------------------ Packages ------------------
 rpmfusion:
   - "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_facts.distribution_version }}.noarch.rpm"
   - "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts.distribution_version }}.noarch.rpm"
 
-gui_packages:
-  - keepassxc
-  - qbittorrent
-  - libreoffice
-  - elisa-player
-  - kmail
-  - korganizer
-  - vlc
-  - kate
-  - latte-dock
-  - timeshift
-  - flatpak
-  - VirtualBox
-  - VirtualBox-kmodsrc
-  - VirtualBox-server
-  - fedy
-  - simplescreenrecorder
+gui_packages: {}
 
-drivers_packages:
-  - mesa-vdpau-drivers
-  - mesa-vulkan-drivers
-  - libva-vdpau-driver
-  - libvdpau-va-gl
-  - libvdpau-devel
+drivers_packages: {}
 
-cmd_packages:
-  - fish
-  - python3
-  - python3-pip
-  - python3-devel
-  - git
-  - vim
-  - vim-X11
-  - htop
-  - youtube-dl
-  - tmux
-  - xdotool
-  - wmctrl
-  - libinput
-  - libinput-devel
-  - libinput-utils
-  - xclip
-  - gcc
-  - gcc-c++
-  - make
-  - duplicity
-  - rclone
-  - rsync
-  - ruby
-  - vagrant
-  - ansible
-  - xterm
-  - fzf
-  - powertop
-  - tlp
-  - tuned-utils
-  - msr-tools
-  - lm_sensors
-  - hdparm
-  - acpi
-  - wget
-  - nmap
-  - ffmpeg
-  - mpv
-  - hugo
-  - fontawesome-fonts
-  - jetbrains-mono-fonts-all
-  - python3-psutil
-  - roboto-fontface-fonts
-  - podman
+cmd_packages: {}
 
-pip_packages:
-  - ansible-lint
-  - molecule[docker]
-  - docker
-  - yamllint
-  - vimwiki-markdown
+pip_packages: {}
 
-bloat_packages:
-  - dragon
-  - mediawriter
-  - akregator
-  - kget
-  - juk
-  - kmahjongg
-  - khelpcenter
-  - tigervnc-server-minimal
-  - kmines
-  - kmousetool
-  - kolourpaint
-  - kmouth
-  - kpat
-  - kgpg
-  - kcharselect
-  - dnfdragora
-  - krdc
-  - krfb
-  - pim-sieve
-  - konversation
-  - plasma-discover-notifier
+bloat_packages: {}
 
-misc_packages:
-  - kio-gdrive
-  - kaccounts-integration
-  - kaccounts-providers
-  - ktp-accounts-kcm
+misc_packages: {}
 
-flatpak_packages:
-  - us.zoom.Zoom
-  - com.anydesk.Anydesk
-  - com.skype.Client
-  - com.discordapp.Discord
-  - com.stremio.Stremio
-  - com.microsoft.Teams
+flatpak_packages: {}
+
 # ----------------------------------------------
 # DOTFILES
 # ----------------------------------------------
 
 # Repo for dotfiles
-dotfiles_repo: "https://github.com/LexVar/dotfiles.git"
+dotfiles_repo: ""

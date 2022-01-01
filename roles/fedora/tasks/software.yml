@@ -5,7 +5,8 @@
   - name: Remove unecessary packages
     dnf:
       state: absent
-      name: "{{ bloat_packages }}"
+      name: "{{ item }}"
+    loop: "{{ bloat_packages }}"
 
   - name: Upgrade all packages
     dnf:
@@ -27,27 +28,38 @@
     dnf:
       update_cache: true
       state: latest
-      name: "{{ drivers_packages }}"
+      name: "{{ item }}"
+    loop: "{{ drivers_packages }}"
 
   - name: Install gui programs
     dnf:
       state: latest
-      name: "{{ gui_packages }}"
+      name: "{{ item }}"
+    loop: "{{ gui_packages }}"
 
   - name: Install command line tools
     dnf:
       state: latest
-      name: "{{ cmd_packages }}"
+      name: "{{ item }}"
+    loop: "{{ cmd_packages }}"
 
   - name: Install miscellanious packages
     dnf:
       state: present
-      name: "{{ misc_packages }}"
+      name: "{{ item }}"
+    loop: "{{ misc_packages }}"
 
   # Apply to entire block
   become: true
 
-- stat: path="{{ user_home }}/.local/share/omf"
+- name: Install python dependencies
+  pip:
+    name: "{{ item }}"
+  loop: "{{ pip_packages }}"
+
+- name: Check if omf dir exists
+  stat:
+    path: "/home/{{ user }}/.local/share/omf"
   register: omf_dir
 
 - block:

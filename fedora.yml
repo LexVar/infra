@@ -10,4 +10,3 @@
 
   roles:
     - role: fedora
-    - role: geerlingguy.pip

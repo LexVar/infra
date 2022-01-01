@@ -8,7 +8,7 @@
   - name: Copy dotfiles to home directory
     ansible.posix.synchronize:
       src: "/tmp/dotfiles/"
-      dest: "{{ user_home }}"
+      dest: "/home/{{ home }}"
       recursive: true
 
   - name: Recursively remove git tmp directory
@@ -16,5 +16,4 @@
       path: /tmp/dotfiles
       state: absent
 
-  delegate_to: delegate.host
   become: false

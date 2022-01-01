@@ -33,21 +33,19 @@ This repo contains example files for using these roles:
 - yamllint 1.26.2
 
 ## TODO
-- [X] Include full ssh configuration
+
 - [X] Setup proper folder structure with roles
 - [ ] Fedora Workstation role
 	- [ ] Fix dotfiles git pull
-- [O] SSH
+	- [ ] Add ~/.bin links to /usr/local/bin/
+- [X] SSH
 	- [X] Custom sshd_config
 	- [X] Firewall configuration
 	- [X] Local key generation
-	- [ ] Add RHEL support
 - [X] Call firewall role
-- [o] Wireguard role
+- [ ] Wireguard role
 	- [X] Docker install
 	- [X] Container 
 	- [X] Firewall configuration
 	- [ ] Add RHEL support
 	- [ ] Add changed when to docker run
-- [ ] Separate nginx role for config
-- [ ] CI test pipeline with molecule
