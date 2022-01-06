@@ -8,15 +8,18 @@ collections:
   - name: ansible.posix
 
 roles:
-  - name: cloudalchemy.grafana
-    version: 0.17.0
-  - name: cloudalchemy.prometheus
-    version: 4.0.0
+  - name: exploide.dnf-automatic
+    version: 2.0.0
   - name: geerlingguy.firewall
     version: 2.5.0
   - name: geerlingguy.pip
     version: 2.1.0
   - name: geerlingguy.docker
     version: 4.1.0
-  - name: geerlingguy.nginx
-    version: 3.1.0
+
+  # - name: geerlingguy.nginx
+  #   version: 3.1.0
+  # - name: cloudalchemy.grafana
+  #   version: 0.17.0
+  # - name: cloudalchemy.prometheus
+  #   version: 4.0.0

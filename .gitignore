@@ -3,4 +3,7 @@ Vagrantfile
 .vagrant*
 *.sh
 .ansible/
+.ansible-lint
+.yamllint
 inventory.ini
+.temp/

@@ -7,8 +7,17 @@
   user:
     name: "{{ ssh_user }}"
     shell: /bin/bash
+    groups: "wheel"
+    password: "{{ ssh_user_password }}"
+  when: ansible_facts['os_family'] == "RedHat"
+
+- name: "Add a priviliged user {{ ssh_user }}"
+  user:
+    name: "{{ ssh_user }}"
+    shell: /bin/bash
     groups: "sudo"
     password: "{{ ssh_user_password }}"
+  when: ansible_facts['os_family'] == "Debian"
 
 - name: "Give the user passwordless sudo"
   lineinfile:

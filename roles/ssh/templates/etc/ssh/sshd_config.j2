@@ -1,4 +1,4 @@
-Include /etc/ssh/sshd_config.d/*.conf
+# Include /etc/ssh/ssh_config.d/*.conf
 
 #n Set to inet for IPv4-only, inet6 for IPv6-only, any for either one
 AddressFamily any
@@ -25,7 +25,6 @@ LogLevel VERBOSE
 # Preferer public key authentication only
 ChallengeResponseAuthentication no
 PasswordAuthentication no
-RSAAuthentication no
 GSSAPIAuthentication no
 HostbasedAuthentication no
 UsePAM no

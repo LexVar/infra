@@ -1,0 +1,32 @@
+---
+
+- hosts: all
+  gather_facts: true
+  become: true
+
+  vars_files:
+    - vars/orangepi.yml
+    - vars/passwords.yml
+
+  tasks:
+    - include_role:
+        name: exploide.dnf-automatic
+      when: ansible_facts['os_family'] == 'RedHat'
+
+    - block:
+        - name: Remove unecessary packages
+          apt:
+            state: present
+            name: "unattended-upgrades"
+
+        - name: Enable Unattended Upgrades
+          service:
+            name: unattended-upgrades
+            state: started
+            enabled: true
+      when: ansible_facts['os_family'] == 'Debian'
+      become: true
+
+  roles:
+    - geerlingguy.firewall
+    - ssh

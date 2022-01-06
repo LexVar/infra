@@ -1,11 +1,4 @@
 ---
 
-- include: debian.yml
-  tags: upgrade
-
 - include: local.yml
-
 - include: config.yml
-
-# - include: firewall.yml
-# tags: firewall

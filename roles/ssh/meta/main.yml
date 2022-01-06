@@ -24,15 +24,12 @@ galaxy_info:
   # https://galaxy.ansible.com/api/v1/platforms/
   #
   platforms:
-    - name: Ubuntu 20.04
+    - name: Ubuntu
       versions:
         - 20.04
-  # - name: SomePlatform
-  #   versions:
-  #   - all
-  #   - 1.0
-  #   - 7
-  #   - 99.99
+    - name: Alma Linux
+      versions:
+        - 8
 
   galaxy_tags: []
 

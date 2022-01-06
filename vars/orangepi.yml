@@ -1,0 +1,20 @@
+---
+
+# Home folder
+host_home: "{{ lookup('env','HOME') }}"
+
+# ssh role variables
+# private_key: "/tmp/ssh_key"
+private_key: "~/.ssh/ssh_key"
+
+ssh_user: "avalente"
+
+# Firewall variables
+firewall_allowed_tcp_ports:
+  - "22"
+
+firewall_disable_ufw: false
+firewall_flush_rules_and_chains: false
+
+# Log dropped packets to syslog
+firewall_log_dropped_packets: true
