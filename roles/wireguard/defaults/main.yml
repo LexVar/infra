@@ -6,25 +6,40 @@
 wireguard_name: "wireguard"
 
 # user and group ID
-puid: 1000
-pgid: 1000
+puid: "1000"
+pgid: "1000"
 
 # TIMEZONE
 timezone: "Europe/Lisbon"
 
 # Server domain and port
-wireguard_url: "lexhome.ddns.net"
-wireguard_port: 51820
+wireguard_url: "lex97.ddns.net"
+wireguard_port: "51820"
+proxy_port: "443"
 
-# Nginx reverse proxy PORT - to access wireguard
-proxy_port: 443
+wireguard_image: "ghcr.io/linuxserver/wireguard"
 
 # Number of peers to create configurations
-num_peers: 2
+num_peers: "2"
 
 peer_dns: "1.1.1.1"
 internal_subnet: "10.13.13.0"
 allowed_ips: "0.0.0.0/0"
 
 wireguard_config: "/path/to/appdata/config"
+
+redhat_packages:
+  - podman
+  - podman-docker
+  - python3
+  - nginx
+
+debian_packages:
+  - docker.io
+  - python3-pip
+  - nginx
+
+pip_packages:
+  - requests
+  - docker
 # -------------------------------

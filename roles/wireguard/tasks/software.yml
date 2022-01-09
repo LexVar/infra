@@ -1,0 +1,22 @@
+---
+
+- name: Set debian docker packages to install
+  set_fact:
+    docker_packages: "{{ debian_packages }}"
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: Set redhat docker packages to install
+  set_fact:
+    docker_packages: "{{ redhat_packages }}"
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: Install docker packages
+  apt:
+    state: present
+    name: "{{ item }}"
+  loop: "{{ docker_packages }}"
+
+- name: Install python dependencies
+  pip:
+    name: "{{ item }}"
+  loop: "{{ pip_packages }}"

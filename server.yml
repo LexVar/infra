@@ -6,9 +6,15 @@
 
   vars_files:
     - vars/orangepi.yml
-    - vars/passwords.yml
+    # - vars/raspi.yml
+
+  roles:
+    - geerlingguy.firewall
+    - ssh
+    - wireguard
 
   tasks:
+    # Setup automatic updates
     - include_role:
         name: exploide.dnf-automatic
       when: ansible_facts['os_family'] == 'RedHat'
@@ -26,7 +32,3 @@
             enabled: true
       when: ansible_facts['os_family'] == 'Debian'
       become: true
-
-  roles:
-    - geerlingguy.firewall
-    - ssh

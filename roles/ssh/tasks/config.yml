@@ -3,21 +3,29 @@
 # Add user's ssh public key
 # Add custom SSH configuration
 
-- name: "Add a priviliged user {{ ssh_user }}"
-  user:
-    name: "{{ ssh_user }}"
-    shell: /bin/bash
-    groups: "wheel"
-    password: "{{ ssh_user_password }}"
+- name: Set sudo group
+  set_fact:
+    sudo_group: "sudo"
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Set sudo group
+  set_fact:
+    sudo_group: "wheel"
   when: ansible_facts['os_family'] == "RedHat"
 
+# User is created with password 'password', prompted to change on next login
 - name: "Add a priviliged user {{ ssh_user }}"
   user:
     name: "{{ ssh_user }}"
     shell: /bin/bash
-    groups: "sudo"
-    password: "{{ ssh_user_password }}"
-  when: ansible_facts['os_family'] == "Debian"
+    groups: "{{ sudo_group }}"
+    password: "{{ 'password' | password_hash('sha512') }}"
+    update_password: on_create
+  register: sshuser
+
+- name: "Force {{ ssh_user }} to change password"
+  command: "chage -d 0 {{ ssh_user }}"
+  when: sshuser.changed
 
 - name: "Give the user passwordless sudo"
   lineinfile:
@@ -33,6 +41,32 @@
     state: present
     key: "{{ lookup('file', '{{ private_key }}.pub') }}"
 
+- name: Create ssh conf directory if not exists
+  ansible.builtin.file:
+    path: /etc/ssh/sshd_config.d
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- block:
+    - name: Copy SSH config file to remote hosts
+      template:
+        src: etc/ssh/sshd_config.j2
+        dest: /etc/ssh/sshd_config.d/00-custom.conf
+        owner: root
+        group: root
+        mode: '0644'
+        validate: 'sshd -T -f %s'
+
+    - name: "Make sure include is present in sshd_config"
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        state: present
+        line: 'Include /etc/ssh/sshd_config.d/*.conf'
+        validate: 'sshd -T -f %s'
+  when: ansible_facts['os_family'] == 'Debian'
+
 - name: Copy SSH config file to remote hosts
   template:
     src: etc/ssh/sshd_config.j2
@@ -40,4 +74,5 @@
     owner: root
     group: root
     mode: '0644'
-  notify: Reload SSH
+    validate: 'sshd -T -f %s'
+  when: ansible_facts['os_family'] == 'RedHat'

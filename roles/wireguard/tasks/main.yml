@@ -1,7 +1,6 @@
 ---
 # tasks file for wireguard
 
-# - include: debian.yml
-# - include: firewall.yml
-- include: wireguard.yml
+- include: software.yml
 - include: nginx.yml
+- include: config.yml

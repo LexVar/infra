@@ -37,8 +37,3 @@ This repo contains example files for using these roles:
 - [ ] Fedora Workstation role
 	- [ ] Fix dotfiles git pull
 	- [ ] Add ~/.bin links to /usr/local/bin/
-- [ ] Wireguard role
-	- [X] Docker install
-	- [X] Container 
-	- [X] Firewall configuration
-	- [ ] Add changed when to docker run
