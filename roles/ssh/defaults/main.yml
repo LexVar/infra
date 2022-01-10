@@ -5,10 +5,7 @@
 # Remote user name
 ssh_user: admin
 
-# This should be changed using ansible vault
-ssh_user_password: password
-
 # locatin of public key to add for ssh
-private_key: "{{ host_home }}/.ssh/ssh_key"
+ssh_private_key: "{{ host_home }}/.ssh/ssh_key"
 
 ssh_port: "22"

@@ -1,0 +1,40 @@
+---
+
+# Home folder
+host_home: "{{ lookup('env','HOME') }}"
+
+deploy_wireguard: false
+deploy_haproxy: true
+
+# Firewall allowed ports
+firewall_allowed_tcp_ports:
+  - "{{ ssh_port }}"
+  - "{{ haproxy_port }}"
+  - "53"
+
+firewall_allowed_udp_ports:
+  - "53"
+
+# HAProxy
+haproxy_port: "80"
+
+haproxy_backends:
+  - name: adguard-backend
+    servers:
+      - name: "adguard1"
+        url: "127.0.0.1:5000"
+    path: "/"
+  - name: notes-backend
+    servers:
+      - name: "notes1"
+        url: "127.0.0.1:8080"
+    path: "/notes"
+
+# ssh role variables
+ssh_private_key: "~/.ssh/ssh_key"
+ssh_user: "avalente"
+
+# DNF unnattended automatic updates
+dnf_automatic_apply_updates: true
+dnf_automatic_download_updates: true
+dnf_automatic_upgrade_type: security

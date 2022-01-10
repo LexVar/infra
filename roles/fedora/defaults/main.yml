@@ -1,31 +1,28 @@
 ---
-# defaults file for fedora
+# static variables
 
-# host user
-user: user
+# STATIC variables
 
-# ------------------ Packages ------------------
+# host user's home dir
+user_home: "/home/{{ user }}"
+
+# ------------------ Repos ------------------
 rpmfusion:
   - "https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ ansible_facts.distribution_version }}.noarch.rpm"
   - "https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ ansible_facts.distribution_version }}.noarch.rpm"
 
-gui_packages: {}
+# Dynamic user changeable variables 
+# host user
+user: user
 
+# ------------------ Packages ------------------
+gui_packages:     {}
 drivers_packages: {}
-
-cmd_packages: {}
-
-pip_packages: {}
-
-bloat_packages: {}
-
-misc_packages: {}
-
+cmd_packages:     {}
+pip_packages:     {}
+bloat_packages:   {}
+misc_packages:    {}
 flatpak_packages: {}
-
-# ----------------------------------------------
-# DOTFILES
-# ----------------------------------------------
 
 # Repo for dotfiles
 dotfiles_repo: ""

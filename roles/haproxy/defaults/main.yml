@@ -1,0 +1,16 @@
+---
+
+# Set to true to deploy haproxy
+deploy_haproxy: false
+
+haproxy_port: 80
+
+haproxy_backends: {}
+# backends:
+#   - name: example-backend
+#     servers:
+#       - name: "srv1"
+#         url: "127.0.0.1:5001"
+#       - name: "srv2"
+#         url: "127.0.0.1:5002"
+#     path: "/path"

@@ -1,7 +1,27 @@
 ---
 # defaults file for wireguard
 
-# ----- WIREGUARD VARIABLES -----
+# Set to true to deploy wireguard
+deploy_wireguard: false
+
+# STATIC VARIABLES
+redhat_packages:
+  - podman
+  - podman-docker
+  - python3
+  - nginx
+
+debian_packages:
+  - docker.io
+  - python3-pip
+  - nginx
+
+pip_packages:
+  - requests
+  - docker
+# ----------------
+
+# ----- DYNAMIC VARIABLES -----
 # Container name
 wireguard_name: "wireguard"
 
@@ -27,19 +47,4 @@ internal_subnet: "10.13.13.0"
 allowed_ips: "0.0.0.0/0"
 
 wireguard_config: "/path/to/appdata/config"
-
-redhat_packages:
-  - podman
-  - podman-docker
-  - python3
-  - nginx
-
-debian_packages:
-  - docker.io
-  - python3-pip
-  - nginx
-
-pip_packages:
-  - requests
-  - docker
 # -------------------------------

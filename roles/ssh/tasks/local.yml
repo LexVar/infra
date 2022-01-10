@@ -4,7 +4,7 @@
 - name: Generate an OpenSSH ecdsa keypair
   local_action:
     module: community.crypto.openssh_keypair
-    path: "{{ private_key }}"
+    path: "{{ ssh_private_key }}"
     size: 256
     type: ecdsa
     regenerate: full_idempotence

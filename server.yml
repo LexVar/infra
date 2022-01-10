@@ -4,31 +4,18 @@
   gather_facts: true
   become: true
 
-  vars_files:
-    - vars/orangepi.yml
-    # - vars/raspi.yml
+  pre_tasks:
+    - name: Run firewall playbook
+      include: playbooks/firewall.yml
+
+    - name: Enable automatic updated
+      include: playbooks/automatic-updates.yml
 
   roles:
-    - geerlingguy.firewall
-    - ssh
-    - wireguard
+    - role: wireguard
+      when: deploy_wireguard
 
-  tasks:
-    # Setup automatic updates
-    - include_role:
-        name: exploide.dnf-automatic
-      when: ansible_facts['os_family'] == 'RedHat'
+    - role: ssh
 
-    - block:
-        - name: Remove unecessary packages
-          apt:
-            state: present
-            name: "unattended-upgrades"
-
-        - name: Enable Unattended Upgrades
-          service:
-            name: unattended-upgrades
-            state: started
-            enabled: true
-      when: ansible_facts['os_family'] == 'Debian'
-      become: true
+    - role: haproxy
+      when: deploy_haproxy and haproxy_backends | length > 0 

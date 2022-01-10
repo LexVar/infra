@@ -1,0 +1,48 @@
+---
+
+# Home folder
+host_home: "{{ lookup('env','HOME') }}"
+
+deploy_wireguard: true
+deploy_haproxy: false
+
+# ssh role variables
+ssh_private_key: "~/.ssh/ssh_key"
+
+ssh_user: "avalente"
+
+# Firewall variables
+firewall_allowed_tcp_ports:
+  - "22"
+  - "{{ proxy_port }}"
+
+firewall_allowed_udp_ports:
+  - "{{ proxy_port }}"
+
+firewall_disable_ufw: false
+firewall_flush_rules_and_chains: false
+
+# Log dropped packets to syslog
+firewall_log_dropped_packets: true
+
+# ----- DYNAMIC VARIABLES -----
+
+# TIMEZONE
+timezone: "Europe/Lisbon"
+
+# Server domain and port
+wireguard_url: "lex97.ddns.net"
+wireguard_port: "51820"
+proxy_port: "443"
+
+wireguard_image: "ghcr.io/linuxserver/wireguard"
+
+# Number of peers to create configurations
+num_peers: "2"
+
+peer_dns: "1.1.1.1"
+internal_subnet: "10.13.13.0"
+allowed_ips: "0.0.0.0/0"
+
+wireguard_config: "/path/to/appdata/config"
+# -------------------------------

@@ -1,0 +1,13 @@
+---
+
+- name: Reload HAProxy
+  service:
+    name: haproxy
+    enabled: true
+    state: reloaded
+
+- name: Restart HAProxy
+  service:
+    name: haproxy
+    enabled: true
+    state: restarted
