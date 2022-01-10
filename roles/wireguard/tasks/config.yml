@@ -14,7 +14,7 @@
       - sys_module
       - net_admin
     ports:
-      - "127.0.0.1:{{ wireguard_port }}:{{ wireguard_port }}/udp"
+      - "{{ wireguard_address }}:51820/udp"
     volumes:
       - "/lib/modules:/lib/modules"
       - "{{ wireguard_config }}:/config"
@@ -22,7 +22,7 @@
       PUID: "{{ puid }}"
       TZ: "{{ timezone }}"
       SERVERURL: "{{ wireguard_url }}"
-      SERVERPORT: "{{ wireguard_port }}"
+      SERVERPORT: "{{ server_port }}"
       PEERS: "{{ num_peers }}"
       PEERDNS: "{{ peer_dns }}"
       INTERNAL_SUBNET: "{{ internal_subnet }}"
