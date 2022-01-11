@@ -4,7 +4,7 @@
   when: ansible_facts['os_family'] == 'RedHat'
 
 - block:
-    - name: Remove unecessary packages
+    - name: Install unattended upgrades package
       apt:
         state: present
         name: "unattended-upgrades"

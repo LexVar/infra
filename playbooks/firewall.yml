@@ -1,57 +1,59 @@
 - block:
-  - name: Install firewalld
-    yum:
-      state: present
-      name: "firewalld"
+  - block:
+    - name: Install firewalld
+      yum:
+        state: present
+        name: "firewalld"
 
-  - name: Start and enable firewalld
-    service:
-      state: started
-      enabled: true
-      name: "firewalld"
+    - name: Start and enable firewalld
+      service:
+        state: started
+        enabled: true
+        name: "firewalld"
 
-  - name: Open firewall tcp ports
-    firewalld:
-      port: "{{ item }}/tcp"
-      permanent: true
-      immediate: true
-      state: enabled
-    loop: "{{ firewall_allowed_tcp_ports }}"
+    - name: Open firewall tcp ports
+      firewalld:
+        port: "{{ item }}/tcp"
+        permanent: true
+        immediate: true
+        state: enabled
+      loop: "{{ firewall_allowed_tcp_ports }}"
 
-  - name: Open firewall udp ports
-    firewalld:
-      port: "{{ item }}/udp"
-      permanent: true
-      immediate: true
-      state: enabled
-    loop: "{{ firewall_allowed_udp_ports }}"
-  when: ansible_facts['os_family'] == 'RedHat'
+    - name: Open firewall udp ports
+      firewalld:
+        port: "{{ item }}/udp"
+        permanent: true
+        immediate: true
+        state: enabled
+      loop: "{{ firewall_allowed_udp_ports }}"
+    when: ansible_facts['os_family'] == 'RedHat'
 
-- block:
-  - name: Install ufw
-    apt:
-      state: present
-      name: "ufw"
+  - block:
+    - name: Install ufw
+      apt:
+        state: present
+        name: "ufw"
 
-  - name: Set logging to on
-    ufw:
-      logging: 'on'
+    - name: Set logging to on
+      ufw:
+        logging: 'on'
 
-  - name: Open firewall tcp ports
-    ufw:
-      rule: allow
-      port: "{{ item }}"
-      proto: tcp
-    loop: "{{ firewall_allowed_tcp_ports }}"
+    - name: Open firewall tcp ports
+      ufw:
+        rule: allow
+        port: "{{ item }}"
+        proto: tcp
+      loop: "{{ firewall_allowed_tcp_ports }}"
 
-  - name: Open firewall udp ports
-    ufw:
-      rule: allow
-      port: "{{ item }}"
-      proto: udp
-    loop: "{{ firewall_allowed_udp_ports }}"
+    - name: Open firewall udp ports
+      ufw:
+        rule: allow
+        port: "{{ item }}"
+        proto: udp
+      loop: "{{ firewall_allowed_udp_ports }}"
 
-  - name: Enable ufw
-    ufw:
-      state: enabled
-  when: ansible_facts['os_family'] == 'Debian'
+    - name: Enable ufw
+      ufw:
+        state: enabled
+    when: ansible_facts['os_family'] == 'Debian'
+  when: firewall_allowed_tcp_ports is defined and firewall_allowed_udp_ports is defined

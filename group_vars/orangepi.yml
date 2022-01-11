@@ -6,6 +6,9 @@ host_home: "{{ lookup('env','HOME') }}"
 deploy_wireguard: true
 deploy_haproxy: false
 
+packages:
+  - htop
+
 # ssh role variables
 ssh_private_key: "~/.ssh/ssh_key"
 

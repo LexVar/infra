@@ -6,6 +6,10 @@ host_home: "{{ lookup('env','HOME') }}"
 deploy_wireguard: false
 deploy_haproxy: true
 
+packages:
+  - epel-release
+  - htop
+
 # Firewall allowed ports
 firewall_allowed_tcp_ports:
   - "{{ ssh_port }}"

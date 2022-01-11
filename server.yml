@@ -11,6 +11,9 @@
     - name: Enable automatic updated
       include: playbooks/automatic-updates.yml
 
+    - name: Install packages
+      include: playbooks/install-software.yml
+
   roles:
     - role: wireguard
       when: deploy_wireguard
