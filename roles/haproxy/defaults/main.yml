@@ -1,8 +1,5 @@
 ---
 
-# Set to true to deploy haproxy
-deploy_haproxy: false
-
 haproxy_port: 80
 
 haproxy_backends: {}

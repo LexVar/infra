@@ -1,0 +1,7 @@
+---
+
+- name: Restart AdGuardHome
+  docker_container:
+    name: "{{ adguardhome_name }}"
+    state: started
+    restart: true

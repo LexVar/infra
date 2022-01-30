@@ -36,7 +36,13 @@
 
     - name: Set logging to on
       ufw:
-        logging: 'on'
+        logging: "{{ firewall_logging }}"
+
+    - name: Set default policy
+      ufw:
+        default: "{{ item.policy }}"
+        direction: "{{ item.direction }}"
+      loop: "{{ firewall_default_policies }}"
 
     - name: Open firewall tcp ports
       ufw:

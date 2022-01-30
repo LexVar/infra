@@ -6,7 +6,3 @@ collections:
   - name: community.general
   - name: community.crypto
   - name: ansible.posix
-
-roles:
-  - name: exploide.dnf-automatic
-    version: 2.0.0

@@ -21,7 +21,6 @@ The `requirements.yml` file contains all the necessary collections and role depe
 
 Dependencies can be installed by running (for ansible v2.9+):
 
-	ansible-galaxy install -r requirements.yml
 	ansible-galaxy collection install -r requirements.yml
 
 ### Usage Examples

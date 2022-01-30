@@ -3,13 +3,14 @@
 # Home folder
 host_home: "{{ lookup('env','HOME') }}"
 
+# Unecessary but for clarity
 deploy_wireguard: false
-deploy_haproxy: true
 
 packages:
   - epel-release
   - htop
 
+# ----------------------------------------------
 # Firewall allowed ports
 firewall_allowed_tcp_ports:
   - "{{ ssh_port }}"
@@ -19,14 +20,46 @@ firewall_allowed_tcp_ports:
 firewall_allowed_udp_ports:
   - "53"
 
+# ----------------------------------------------
+# AdGuard Home
+deploy_adguardhome: true
+
+adguardhome_name: "adguardhome"
+adguardhome_image_name: "adguard/adguardhome"
+adguardhome_image_tag: "v0.107.3"
+
+adguardhome_address: "127.0.0.1:5000"
+adguardhome_conf_dir: "/opt/adguardhome"
+adguardhome_data_dir: "/opt/adguardhome/data"
+
+adguardhome_dns_servers:
+  - 1.1.1.1
+  - 1.0.0.1
+  - https://dns10.quad9.net/dns-query
+
+adguardhome_rules:
+  - '||www.googleadservices.com^$important'
+  - '@@||web.whatsapp.com^$important'
+  - ""
+
+adguardhome_rewrites:
+  - domain: adguard.home
+    answer: 192.168.1.80
+  - domain: raspi.local
+    answer: 192.168.1.80
+  - domain: orangepi.local
+    answer: 192.168.1.81
+
+# ----------------------------------------------
 # HAProxy
+deploy_haproxy: true
 haproxy_port: "80"
 
 haproxy_backends:
   - name: adguard-backend
     servers:
       - name: "adguard1"
-        url: "127.0.0.1:5000"
+        url: "{{ adguardhome_address }}"
     path: "/"
   - name: notes-backend
     servers:
@@ -34,11 +67,7 @@ haproxy_backends:
         url: "127.0.0.1:8080"
     path: "/notes"
 
+# ----------------------------------------------
 # ssh role variables
 ssh_private_key: "~/.ssh/ssh_key"
 ssh_user: "avalente"
-
-# DNF unnattended automatic updates
-dnf_automatic_apply_updates: true
-dnf_automatic_download_updates: true
-dnf_automatic_upgrade_type: security

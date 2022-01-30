@@ -1,6 +1,15 @@
 # Setup automatic updates
-- include_role:
-    name: exploide.dnf-automatic
+- block:
+    - name: Install dnf-automatic package
+      yum:
+        state: present
+        name: "dnf-automatic"
+
+    - name: Enable Unattended Upgrades
+      service:
+        name: dnf-automatic.timer
+        state: started
+        enabled: true
   when: ansible_facts['os_family'] == 'RedHat'
 
 - block:
