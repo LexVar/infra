@@ -9,3 +9,6 @@ ssh_user: admin
 ssh_private_key: "{{ host_home }}/.ssh/ssh_key"
 
 ssh_port: "22"
+
+# Generate ssh key or not
+gen_key: true

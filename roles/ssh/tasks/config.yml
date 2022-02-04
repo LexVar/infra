@@ -35,12 +35,6 @@
     line: '%{{ ssh_user }} ALL=(ALL) NOPASSWD: ALL'
     validate: '/usr/sbin/visudo -cf %s'
 
-- name: Add ssh public key
-  ansible.posix.authorized_key:
-    user: "{{ ssh_user }}"
-    state: present
-    key: "{{ lookup('file', '{{ ssh_private_key }}.pub') }}"
-
 - name: Create ssh conf directory if not exists
   ansible.builtin.file:
     path: /etc/ssh/sshd_config.d

@@ -10,10 +10,13 @@ deploy_haproxy: false
 packages:
   - htop
 
+# ----- SSH -----
 # ssh role variables
 ssh_private_key: "~/.ssh/ssh_key"
 
 ssh_user: "avalente"
+ssh_generate_key: false
+# ----- ----------------- -----
 
 # Firewall variables
 firewall_allowed_tcp_ports:

@@ -10,3 +10,9 @@
     regenerate: full_idempotence
   run_once: true
   become: false
+
+- name: Add ssh public key
+  ansible.posix.authorized_key:
+    user: "{{ ssh_user }}"
+    state: present
+    key: "{{ lookup('file', '{{ ssh_private_key }}.pub') }}"

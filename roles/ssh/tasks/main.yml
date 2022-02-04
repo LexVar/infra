@@ -1,4 +1,6 @@
 ---
 
-- include: local.yml
+- include: key.yml
+  when: ssh_generate_key
+
 - include: config.yml
