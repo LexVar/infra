@@ -7,27 +7,6 @@ deploy_haproxy: false
 packages:
   - htop
 
-# -------------------------------
-
-# Firewall variables
-firewall_allowed_tcp_ports:
-  - "22"
-  - "{{ proxy_port }}"
-
-firewall_allowed_udp_ports:
-  - "{{ proxy_port }}"
-
-# on, off, low, medium, high, full
-firewall_logging: 'on'
-
-firewall_default_policies:
-  - policy: "allow"
-    direction: "routed"
-  - policy: "deny"
-    direction: "incoming"
-  - policy: "allow"
-    direction: "outgoing"
-
 # ----- DYNAMIC VARIABLES -----
 
 # TIMEZONE
@@ -48,3 +27,24 @@ internal_subnet: "10.13.13.0"
 allowed_ips: "0.0.0.0/0"
 
 wireguard_config: "/path/to/appdata/config"
+
+# -------------------------------
+
+# Firewall variables
+firewall_allowed_tcp_ports:
+  - "22"
+  - "{{ proxy_port }}"
+
+firewall_allowed_udp_ports:
+  - "{{ proxy_port }}"
+
+# on, off, low, medium, high, full
+firewall_logging: 'on'
+
+firewall_default_policies:
+  - policy: "allow"
+    direction: "routed"
+  - policy: "deny"
+    direction: "incoming"
+  - policy: "allow"
+    direction: "outgoing"

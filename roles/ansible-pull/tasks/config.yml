@@ -54,5 +54,9 @@
   file:
     path: "{{ ansible_pull_logfile }}"
     state: touch
-    mode: '0666'
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0644'
+    modification_time: preserve
+    access_time: preserve
   become: true

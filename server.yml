@@ -5,6 +5,14 @@
   become: true
 
   pre_tasks:
+    - name: Install collections locally from requirements.yml file
+      community.general.ansible_galaxy_install:
+        type: collection
+        requirements_file: requirements.yml
+      delegate_to: localhost
+      become: false
+
+  tasks:
     - name: Run firewall playbook
       include: playbooks/firewall.yml
 
@@ -14,9 +22,13 @@
     - name: Install packages
       include: playbooks/install-software.yml
 
-  roles:
-    - ssh
-    - ansible-pull
-    - wireguard
-    - adguardhome
-    - haproxy
+    - include_role:
+        name: '{{ roleinputvar }}'
+      loop:
+          - ssh
+          - ansible-pull
+          - wireguard
+          - adguardhome
+          - haproxy
+      loop_control:
+        loop_var: roleinputvar

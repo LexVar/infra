@@ -8,16 +8,6 @@ packages:
   - htop
 
 # ----------------------------------------------
-# Firewall allowed ports
-firewall_allowed_tcp_ports:
-  - "{{ ssh_port }}"
-  - "{{ haproxy_port }}"
-  - "53"
-
-firewall_allowed_udp_ports:
-  - "53"
-
-# ----------------------------------------------
 # AdGuard Home
 deploy_adguardhome: true
 
@@ -63,3 +53,13 @@ haproxy_backends:
       - name: "notes1"
         url: "127.0.0.1:8080"
     path: "/notes"
+
+# ----------------------------------------------
+# Firewall allowed ports
+firewall_allowed_tcp_ports:
+  - "{{ ssh_port }}"
+  - "{{ haproxy_port }}"
+  - "53"
+
+firewall_allowed_udp_ports:
+  - "53"
