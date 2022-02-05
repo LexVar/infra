@@ -2,5 +2,10 @@
 # tasks file for wireguard
 
 - include: software.yml
+  when: deploy_wireguard | bool
+
 - include: nginx.yml
+  when: deploy_wireguard | bool
+
 - include: config.yml
+  when: deploy_wireguard | bool

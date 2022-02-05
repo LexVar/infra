@@ -1,5 +1,7 @@
 ---
 
+deploy_adguardhome: true
+
 adguardhome_name: "adguardhome"
 adguardhome_image_name: "adguard/adguardhome"
 adguardhome_image_tag: "v0.107.3"

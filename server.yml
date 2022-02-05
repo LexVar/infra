@@ -15,13 +15,7 @@
       include: playbooks/install-software.yml
 
   roles:
-    - role: ssh
-
-    - role: wireguard
-      when: deploy_wireguard is defined and deploy_wireguard
-
-    - role: adguardhome
-      when: deploy_adguardhome is defined and deploy_adguardhome
-
-    - role: haproxy
-      when: deploy_haproxy is defined and deploy_haproxy and haproxy_backends | length > 0
+    - ssh
+    - wireguard
+    - adguardhome
+    - haproxy

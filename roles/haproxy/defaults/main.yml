@@ -1,5 +1,7 @@
 ---
 
+deploy_haproxy: true
+
 haproxy_port: 80
 
 haproxy_backends: {}

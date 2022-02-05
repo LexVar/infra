@@ -1,37 +1,5 @@
 ---
 # tasks file for wireguard
 
-- name: Create directory if it does not exist
-  file:
-    path: "item"
-    owner: root
-    group: root
-    state: directory
-    mode: '0755'
-  loop: 
-    - "{{ adguardhome_conf_dir }}"
-    - "{{ adguardhome_data_dir }}"
-
-- name: AdGuardHome configuration file
-  template:
-    src: AdGuardHome.yml.j2
-    dest: "{{ adguardhome_conf_dir }}/AdGuardHome.yml"
-    owner: root
-    group: root
-    mode: '0644'
-  notify: Restart AdGuardHome
-
-- name: Start adguard container
-  docker_container:
-    name: "{{ adguardhome_name }}"
-    state: started
-    image: "{{ adguardhome_image_name }}:{{ adguardhome_image_tag }}"
-    detach: true
-    restart_policy: unless-stopped
-    ports:
-      - "{{ adguardhome_address }}:5000/tcp"
-      - "53:53/udp"
-      - "53:53/tcp"
-    volumes:
-      - "{{ adguardhome_data_dir }}:/opt/adguardhome/work"
-      - "{{ adguardhome_conf_dir }}:/opt/adguardhome/conf"
+- include: deploy.yml
+  when: deploy_adguardhome | bool

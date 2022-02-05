@@ -1,23 +1,4 @@
 ---
 
-- name: Install haproxy Debian
-  apt:
-    state: present
-    name: haproxy
-  when: ansible_facts['os_family'] == 'Debian'
-
-- name: Install haproxy RedHat
-  yum:
-    state: present
-    name: haproxy
-  when: ansible_facts['os_family'] == 'RedHat'
-
-- name: haproxy configuration file
-  template:
-    src: etc/haproxy/haproxy.cfg.j2
-    dest: /etc/haproxy/haproxy.cfg
-    owner: root
-    group: root
-    mode: '0644'
-    validate: 'haproxy -c -f %s'
-  notify: Restart HAProxy
+- include: deploy.yml
+  when: deploy_haproxy | bool and haproxy_backends | length > 0

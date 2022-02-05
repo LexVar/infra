@@ -1,6 +1,8 @@
 ---
 # defaults file for wireguard
 
+deploy_wireguard: true
+
 # STATIC VARIABLES
 redhat_packages:
   - podman

@@ -1,6 +1,6 @@
 ---
 
 - include: key.yml
-  when: ssh_generate_key
+  when: ssh_generate_key | bool
 
 - include: config.yml
