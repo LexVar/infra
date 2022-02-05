@@ -19,8 +19,8 @@
   file:
     path: "{{ ansible_pull_workdir }}"
     state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: "{{ ansible_pull_user }}"
+    group: "{{ ansible_pull_user }}"
     mode: '0751'
 
 - name: Copy ansible inventory file to client
@@ -54,8 +54,8 @@
   file:
     path: "{{ ansible_pull_logfile }}"
     state: touch
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
+    owner: "{{ ansible_pull_user }}"
+    group: "{{ ansible_pull_user }}"
     mode: '0644'
     modification_time: preserve
     access_time: preserve

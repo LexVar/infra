@@ -1,6 +1,6 @@
 ---
 
 - include: key.yml
-  when: ssh_generate_key | bool
+  when: ssh_generate_key | bool and inventory_hostname != 'localhost' and inventory_hostname != '127.0.0.1'
 
 - include: config.yml
