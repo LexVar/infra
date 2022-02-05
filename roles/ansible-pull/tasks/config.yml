@@ -1,0 +1,58 @@
+---
+
+- block:
+    - name: Install ansible
+      yum:
+        state: present
+        name: 'ansible'
+      when: ansible_facts['os_family'] == 'RedHat'
+      become: true
+
+    - name: Install ansible
+      apt:
+        state: present
+        name: 'ansible'
+      when: ansible_facts['os_family'] == 'Debian'
+  become: true
+
+- name: Create local directory to work from
+  file:
+    path: "{{ ansible_pull_workdir }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: '0751'
+
+- name: Copy ansible inventory file to client
+  template:
+    src: etc/ansible/hosts.j2
+    dest: /etc/ansible/hosts
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+
+- name: Create crontab entry to clone/pull git repository
+  template:
+    src: etc/cron.d/ansible-pull.j2
+    dest: /etc/cron.d/ansible-pull
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+
+- name: Create logrotate entry for ansible-pull.log
+  template:
+    src: etc/logrotate.d/ansible-pull.j2
+    dest: /etc/logrotate.d/ansible-pull
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+
+- name: Create log file
+  file:
+    path: "{{ ansible_pull_logfile }}"
+    state: touch
+    mode: '0666'
+  become: true

@@ -78,6 +78,7 @@ cmd_packages:
   - roboto-fontface-fonts
   - podman
   - tldr
+  - testdisk
 
 pip_packages:
   - ansible-lint

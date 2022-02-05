@@ -1,0 +1,2 @@
+# Cron job to pull and run configuration locally
+{{ ansible_pull_schedule }} {{ ansible_user }} ansible-pull -o -d {{ ansible_pull_workdir }} -U {{ ansible_repo_url }} {{ ansible_pull_playbook }} -e ssh_generate_key=false -e setup_ansible_pull=false -c local >> {{ ansible_pull_logfile }} 2>&1

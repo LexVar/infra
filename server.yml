@@ -16,6 +16,7 @@
 
   roles:
     - ssh
+    - ansible-pull
     - wireguard
     - adguardhome
     - haproxy

@@ -1,8 +1,5 @@
 ---
 
-# Home folder
-host_home: "{{ lookup('env','HOME') }}"
-
 # Unecessary but for clarity
 deploy_wireguard: false
 
@@ -66,9 +63,3 @@ haproxy_backends:
       - name: "notes1"
         url: "127.0.0.1:8080"
     path: "/notes"
-
-# ----------------------------------------------
-# ssh role variables
-ssh_private_key: "~/.ssh/ssh_key"
-ssh_user: "avalente"
-ssh_generate_key: false

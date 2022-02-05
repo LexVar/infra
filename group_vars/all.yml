@@ -1,0 +1,24 @@
+---
+
+# Home folder
+host_home: "{{ lookup('env','HOME') }}"
+
+# ----------------------------------------------
+# ssh role variables
+ssh_private_key: "~/.ssh/ssh_key"
+ssh_user: "avalente"
+ssh_generate_key: true
+
+# ----------------------------------------------
+setup_ansible_pull: true
+
+ansible_pull_schedule: '1 1 * * *'
+
+ansible_pull_logfile: '/var/log/ansible-pull.log'
+
+ansible_pull_workdir: "/tmp/ansible-conf"
+
+ansible_pull_playbook: 'server.yml'
+
+ansible_repo_url: 'https://github.com/LexVar/infra.git'
+ansible_pull_branch: 'master'

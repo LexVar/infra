@@ -1,0 +1,16 @@
+---
+
+- hosts: localhost
+  gather_facts: false
+  become: false
+
+  tasks:
+    - name: Install community.general collection
+      community.general.ansible_galaxy_install:
+        type: collection
+        name: 'community.general'
+
+    - name: Install collections and roles locally
+      community.general.ansible_galaxy_install:
+        type: collection
+        requirements_file: requirements.yml

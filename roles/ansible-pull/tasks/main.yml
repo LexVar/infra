@@ -1,0 +1,4 @@
+---
+
+- include: config.yml
+  when: setup_ansible_pull | bool
