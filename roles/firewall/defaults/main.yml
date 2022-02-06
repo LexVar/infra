@@ -1,0 +1,17 @@
+---
+# defaults for ssh
+
+firewall_allowed_tcp_ports:
+  - "22"
+firewall_allowed_udp_ports: []
+
+# on, off, low, medium, high, full
+firewall_logging: 'on'
+
+firewall_default_policies:
+  - policy: "allow"
+    direction: "routed"
+  - policy: "deny"
+    direction: "incoming"
+  - policy: "allow"
+    direction: "outgoing"

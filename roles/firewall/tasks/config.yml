@@ -1,0 +1,76 @@
+---
+
+- name: Set unattended upgrades package to install on Debian
+  set_fact: 
+    firewall_package: "firewalld"
+  when: ansible_facts['os_family'] == 'RedHat'
+
+- name: Set unattended upgrades package to install on Debian
+  set_fact: 
+    firewall_package: "ufw"
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: Install firewall
+  package:
+    state: present
+    name: "{{ firewall_package }}"
+  become: true
+
+# Setup firewalld on RedHat
+- block:
+  - name: Start and enable firewalld
+    service:
+      state: started
+      enabled: true
+      name: "firewalld"
+
+  - name: Open firewall tcp ports
+    firewalld:
+      port: "{{ item }}/tcp"
+      permanent: true
+      immediate: true
+      state: enabled
+    loop: "{{ firewall_allowed_tcp_ports }}"
+
+  - name: Open firewall udp ports
+    firewalld:
+      port: "{{ item }}/udp"
+      permanent: true
+      immediate: true
+      state: enabled
+    loop: "{{ firewall_allowed_udp_ports }}"
+
+  become: true
+  when: ansible_facts['os_family'] == 'RedHat'
+
+# Setup UFW on Debian
+- block:
+  - name: Set logging to on
+    ufw:
+      logging: "{{ firewall_logging }}"
+
+  - name: Set default policy
+    ufw:
+      default: "{{ item.policy }}"
+      direction: "{{ item.direction }}"
+    loop: "{{ firewall_default_policies }}"
+
+  - name: Open firewall tcp ports
+    ufw:
+      rule: allow
+      port: "{{ item }}"
+      proto: tcp
+    loop: "{{ firewall_allowed_tcp_ports }}"
+
+  - name: Open firewall udp ports
+    ufw:
+      rule: allow
+      port: "{{ item }}"
+      proto: udp
+    loop: "{{ firewall_allowed_udp_ports }}"
+
+  - name: Enable ufw
+    ufw:
+      state: enabled
+  become: true
+  when: ansible_facts['os_family'] == 'Debian'

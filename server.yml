@@ -13,9 +13,6 @@
       run_once: true
 
   tasks:
-    - name: Run firewall playbook
-      include: playbooks/firewall.yml
-
     - name: Enable automatic updated
       include: playbooks/automatic-updates.yml
 
@@ -25,10 +22,11 @@
     - include_role:
         name: '{{ roleinputvar }}'
       loop:
+          - firewall
           - ssh
-          - ansible-pull
           - wireguard
           - adguardhome
           - haproxy
+          - ansible-pull
       loop_control:
         loop_var: roleinputvar

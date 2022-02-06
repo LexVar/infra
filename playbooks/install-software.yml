@@ -6,3 +6,4 @@
     name: "{{ item }}"
   loop: "{{ packages }}"
   become: true
+  when: packages is defined

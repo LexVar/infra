@@ -24,3 +24,6 @@ ansible_pull_playbook: 'server.yml'
 
 ansible_repo_url: 'https://github.com/LexVar/infra.git'
 ansible_pull_branch: 'master'
+
+# ----------------------------------------------
+packages: []
