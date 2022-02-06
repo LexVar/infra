@@ -27,6 +27,7 @@
       PEERDNS: "{{ peer_dns }}"
       INTERNAL_SUBNET: "{{ internal_subnet }}"
       ALLOWEDIPS: "{{ allowed_ips }}"
+  become: true
 
 # - name: Get wireguard container logs
 #   command: "docker logs {{ wireguard_name }}"

@@ -1,18 +1,8 @@
+---
 
-- block:
-    - name: Install packages
-      yum:
-        state: present
-        name: "{{ item }}"
-      loop: "{{ packages }}"
-      when: ansible_facts['os_family'] == 'RedHat'
-      become: true
-
-    - name: Install packages
-      apt:
-        state: present
-        name: "{{ item }}"
-      loop: "{{ packages }}"
-      when: ansible_facts['os_family'] == 'Debian'
+- name: Install packages
+  package:
+    state: present
+    name: "{{ item }}"
+  loop: "{{ packages }}"
   become: true
-  when: packages is defined

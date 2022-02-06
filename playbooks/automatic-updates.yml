@@ -1,27 +1,26 @@
 # Setup automatic updates
-- block:
-    - name: Install dnf-automatic package
-      yum:
-        state: present
-        name: "dnf-automatic"
 
-    - name: Enable Unattended Upgrades
-      service:
-        name: dnf-automatic.timer
-        state: started
-        enabled: true
+- name: Set unattended upgrades package to install on Debian
+  set_fact: 
+    automatic_upgrades_package: "dnf-automatic"
+    automatic_upgrades_service: "dnf-automatic.timer"
   when: ansible_facts['os_family'] == 'RedHat'
 
-- block:
-    - name: Install unattended upgrades package
-      apt:
-        state: present
-        name: "unattended-upgrades"
-
-    - name: Enable Unattended Upgrades
-      service:
-        name: unattended-upgrades
-        state: started
-        enabled: true
+- name: Set unattended upgrades package to install on RedHat
+  set_fact: 
+    automatic_upgrades_package: "unattended-upgrades"
+    automatic_upgrades_service: "unattended-upgrades"
   when: ansible_facts['os_family'] == 'Debian'
+
+- name: Install automatic upgrades package
+  package:
+    name: "{{ automatic_upgrades_package }}"
+    state: present
+  become: true
+
+- name: Enable Unattended Upgrades
+  service:
+    name: "{{ automatic_upgrades_service }}"
+    state: started
+    enabled: true
   become: true

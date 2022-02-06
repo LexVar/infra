@@ -11,9 +11,10 @@
   when: ansible_facts['os_family'] == 'RedHat'
 
 - name: Install docker packages
-  apt:
+  package:
     state: present
     name: "{{ item }}"
+  become: true
   loop: "{{ docker_packages }}"
 
 - name: Install python dependencies

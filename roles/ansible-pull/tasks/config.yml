@@ -1,18 +1,9 @@
 ---
 
-- block:
-    - name: Install ansible
-      yum:
-        state: present
-        name: 'ansible'
-      when: ansible_facts['os_family'] == 'RedHat'
-      become: true
-
-    - name: Install ansible
-      apt:
-        state: present
-        name: 'ansible'
-      when: ansible_facts['os_family'] == 'Debian'
+- name: Install ansible
+  package:
+    state: present
+    name: 'ansible'
   become: true
 
 - name: Create local directory to work from

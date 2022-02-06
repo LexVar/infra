@@ -62,4 +62,5 @@
       ufw:
         state: enabled
     when: ansible_facts['os_family'] == 'Debian'
+  become: true
   when: firewall_allowed_tcp_ports is defined and firewall_allowed_udp_ports is defined

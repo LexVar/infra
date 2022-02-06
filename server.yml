@@ -2,7 +2,6 @@
 
 - hosts: all
   gather_facts: true
-  become: true
 
   pre_tasks:
     - name: Install collections locally from requirements.yml file
@@ -11,6 +10,7 @@
         requirements_file: requirements.yml
       delegate_to: localhost
       become: false
+      run_once: true
 
   tasks:
     - name: Run firewall playbook
