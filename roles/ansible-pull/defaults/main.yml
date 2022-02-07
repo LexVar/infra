@@ -15,4 +15,4 @@ ansible_pull_workdir: "/tmp/ansible-conf"
 ansible_pull_playbook: 'start.yml'
 
 ansible_pull_repo_url: ''
-ansible_pull_branch: 'master'
+ansible_pull_repo_ref: 'master'

@@ -23,15 +23,6 @@
     mode: '0644'
   become: true
 
-- name: Create crontab entry to clone/pull git repository
-  template:
-    src: etc/cron.d/ansible-pull.j2
-    dest: /etc/cron.d/ansible-pull
-    owner: root
-    group: root
-    mode: '0644'
-  become: true
-
 - name: Create logrotate entry for ansible-pull.log
   template:
     src: etc/logrotate.d/ansible-pull.j2
@@ -50,4 +41,19 @@
     mode: '0644'
     modification_time: preserve
     access_time: preserve
+  become: true
+
+- name: Git checkout
+  ansible.builtin.git:
+    repo: "{{ ansible_pull_repo_url }}"
+    dest: "{{ ansible_pull_workdir }}"
+    version: "{{ ansible_pull_repo_ref }}"
+
+- name: Create crontab entry to clone/pull git repository
+  template:
+    src: etc/cron.d/ansible-pull.j2
+    dest: /etc/cron.d/ansible-pull
+    owner: root
+    group: root
+    mode: '0644'
   become: true

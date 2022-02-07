@@ -1,9 +1,16 @@
 ---
 
+- name: Install collections locally from requirements.yml file
+  community.general.ansible_galaxy_install:
+    type: collection
+    requirements_file: requirements.yml
+  delegate_to: localhost
+  become: false
+  run_once: true
+
 - name: Install packages
   package:
     state: present
     name: "{{ item }}"
   loop: "{{ packages }}"
   become: true
-  when: packages is defined

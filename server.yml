@@ -4,20 +4,12 @@
   gather_facts: true
 
   pre_tasks:
-    - name: Install collections locally from requirements.yml file
-      community.general.ansible_galaxy_install:
-        type: collection
-        requirements_file: requirements.yml
-      delegate_to: localhost
-      become: false
-      run_once: true
+    - name: Install dependencies and packages
+      include: playbooks/install-software.yml
 
   tasks:
-    - name: Enable automatic updated
+    - name: Enable automatic updates
       include: playbooks/automatic-updates.yml
-
-    - name: Install packages
-      include: playbooks/install-software.yml
 
     - include_role:
         name: '{{ roleinputvar }}'
