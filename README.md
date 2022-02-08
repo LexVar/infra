@@ -4,16 +4,20 @@ This repo contains all my ansible configuration code for my home lab servers and
 
 ### Roles
 
-- Fedora workstation setup role
-- SSH: secure server configuration with public key authentication
-- Wireguard: installs wireguard in docker container with nginx reverse proxy and downloads generated peer configs (qrcodes).
-- HAProxy: installs haproxy with a template configuration file
-- [Prometheus ansible role](https://github.com/LexVar/ansible-prometheus)
+- `ssh`: setups secure ssh configuration and with public key authentication
+- `wireguard`: installs wireguard in docker container with nginx reverse proxy and downloads generated peer configs
+- `adguardhome`: deploys local adguardhome
+- `ansible-pull`: setups ansible-pull cron job which pulls and runs this playbook conf.
+- `haproxy`: installs haproxy as a LB with a template configuration file
+- `firewall`: setups simple firewalld/ufw
+- `fedora`: personal workstation setup
+
+Default variable values for each role, with examples, are present in each role's `defaults` folder.
 
 ### Playbooks
 
-- `firewall.yml`: setups simple firewalld or ufw with tcp and udp open ports
-- `automatic-updates.yml`: enables automatic unattended updates for Debian and RedHat
+- `automatic-updates.yml`: enables automatic unattended updates for Debian/RedHat based linux
+- `install-software.yml`: install packages and ansible dependencies
 
 ### Setup
 
